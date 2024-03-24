@@ -1,0 +1,48 @@
+@import "../../globalStyles/color.scss";
+.checkbox {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    transition: background-color 0.3s; /* Добавляем плавное изменение цвета фона */
+  }
+  
+  /* Стили для наведения и фокуса */
+  .checkbox:hover,
+  .checkbox:focus {
+    background-color: $green3; /* Цвет фона при наведении или фокусе */
+  }
+  
+  /* Скрытие оригинальных чекбоксов и радиокнопок */
+  .checkbox input[type="checkbox"],
+  .checkbox input[type="radio"] {
+    display: none;
+  }
+  
+  /* Стили для обычных чекбоксов */
+  .checkbox-checkbox {
+    border: 1px solid $gray3;
+    background-color: #fff;
+    border-radius: 4px;
+    
+  }
+  
+  /* Стили для выбранных чекбоксов */
+  .checkbox-checkbox.checked {
+    background-color: $black; /* Цвет фона при выборе */
+  }
+  
+
+  
+  /* Стили для фокуса на выбранном чекбоксе */
+  .checkbox-checkbox.checked:focus {
+    background-color: $green3; /* Цвет фона при выбранном состоянии и фокусе */
+  }
+  
+  /* Стили для радиокнопок */
+  .checkbox-radio {
+    border: 2px solid $gray3;
+    background-color: #fff;
+    border-radius: 50%;
+  }
