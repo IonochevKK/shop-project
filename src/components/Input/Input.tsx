@@ -5,12 +5,14 @@ import classNames from "classnames";
 type TypeInput = "text" | "tel" | "email" | "bigText";
 
 interface InputProps {
-  type?: TypeInput;
+  type: TypeInput;
   className?: string;
   placeholder?: string;
   block?: boolean;
   postfix?: React.ReactNode | string | number;
   value?: string | number;
+  disabled?: boolean;
+  err?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -20,28 +22,43 @@ const Input: React.FC<InputProps> = ({
   block,
   postfix,
   value,
+  disabled,
+  err,
 }) => {
   const ClassNameInput = classNames(
+    { "custom-err": err },
     "custom",
     `custom-${type}`,
     { "custom-block": block },
+
     className
   );
   return (
-    <div className={type === "tel" ? " relative" : ""}>
+    <>
       {type !== "bigText" && (
-        <input
-          placeholder={placeholder}
-          className={ClassNameInput}
-          value={value}
-          type={type}
-        />
+        <div className={type === "tel" ? " relative" : ""}>
+          <div className={err ? "flex" : ""}>
+            <input
+              placeholder={placeholder}
+              className={ClassNameInput}
+              value={value}
+              type={type}
+              disabled={disabled}
+              id={type}
+            />
+            {type === "tel" && <span className="postfix">{postfix}</span>}
+          </div>
+          {err && <label className="label-err">Недопустимые символы</label>}
+        </div>
       )}
+
       {type === "bigText" && (
-        <textarea placeholder={placeholder} className={ClassNameInput} />
+        <div className={err ? "flex" : ""}>
+          <textarea placeholder={placeholder} className={ClassNameInput} />
+          {err && <label className="label-err">Недопустимые символы</label>}
+        </div>
       )}
-      {type === "tel" && <span className="postfix">{postfix}</span>}
-    </div>
+    </>
   );
 };
 

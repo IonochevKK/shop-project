@@ -1,0 +1,37 @@
+@import "../../globalStyles/color.scss";
+.search-block {
+  width: 100%;
+}
+
+.postfix {
+  position: absolute;
+  left: 10px;
+  top: 14px;
+  cursor: pointer;
+}
+.flex {
+  display: flex;
+  text-align: right;
+  flex-direction: column;
+}
+.search {
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 500;
+  padding: 10px 16px 10px 16px;
+  border-radius: 8px;
+  border: 2px solid $gray2;
+  padding-left: 35px;
+  &:hover {
+    border-color: $gray1;
+  }
+  &:focus {
+    border: 2px solid $green1 !important;
+  }
+  &:active {
+    border: 2px solid $green1 !important;
+  }
+  &:disabled {
+    border: 2px solid $gray2;
+  }
+}
