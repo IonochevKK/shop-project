@@ -28,17 +28,14 @@ const CheckBox: React.FC<CheckBoxProps> = ({
     classnames
   );
   return (
-    <label htmlFor={value}>
-      <span className={CheckBoxClasses}>
-        <input
-          name={name}
-          id={value}
-          value={value}
-          type={type}
-          onChange={onChange}
-          disabled={disabled}
-        />
-      </span>
+    <label className={CheckBoxClasses}>
+      <input
+        name={name}
+        value={value}
+        type={type}
+        onChange={onChange}
+        disabled={disabled}
+      />
       <span>{children}</span>
     </label>
   );

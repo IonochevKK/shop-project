@@ -1,28 +1,16 @@
-import { Value } from "sass";
 import "./App.css";
-import CheckBox from "./components/CheckBox/CheckBox";
-import { useState } from "react";
-
+import Input from "./components/Input/Input";
+import LeftArrow from "../public/svg/leftarrow.svg?react";
 function App() {
-  const [isActive, setIsActive] = useState<boolean>(false);
-  console.log(isActive);
-  const onChange = () => {
-    setIsActive(!isActive);
-  };
   return (
-    <div>
-      <CheckBox type="radio" name={"check"} value={"1"}>
-        12312
-      </CheckBox>
-      <CheckBox type="radio" name={"check"} />
-      <CheckBox type="checkbox" name={"check"} />
-      <CheckBox
-        type="checkbox"
-        name={"check"}
-        onChange={onChange}
-        classnames={isActive && "checked"}
-      />
-    </div>
+    <>
+      <div style={{ maxWidth: "300px" }}>
+        <Input placeholder="Имя" block />
+        <Input placeholder="(000)-00-00" type="tel" block postfix={"+7"} />
+        <Input placeholder="Email" type="email" block />
+        <Input placeholder="Рун...." type="bigText" block />
+      </div>
+    </>
   );
 }
 

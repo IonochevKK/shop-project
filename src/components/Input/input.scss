@@ -1,0 +1,28 @@
+@import "../../globalStyles/color.scss";
+.custom-block {
+  width: 100%;
+}
+.relative {
+  position: relative;
+}
+
+.postfix {
+  position: absolute;
+  left: 10px;
+  top: 25%;
+}
+.custom {
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 500;
+  padding: 10px 16px 10px 16px;
+  border-radius: 8px;
+  border: 2px solid $gray2;
+}
+
+.custom-tel {
+  padding-left: 30px;
+}
+.custom-bigText {
+  padding: 12px 16px 12px 16px;
+}
