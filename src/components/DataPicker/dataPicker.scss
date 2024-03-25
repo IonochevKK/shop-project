@@ -1,22 +1,14 @@
 @import "../../globalStyles/color.scss";
-.search-block {
+.dataPicker-block {
   width: 100%;
 }
-.relative {
-  position: relative;
-}
-.prefix {
+.postfix {
   position: absolute;
-  left: 10px;
+  right: 10px;
   top: 14px;
   cursor: pointer;
 }
-.flex {
-  display: flex;
-  text-align: right;
-  flex-direction: column;
-}
-.search {
+.dataPicker {
   position: relative;
   font-size: 16px;
   line-height: 26px;
@@ -37,4 +29,16 @@
   &:disabled {
     border: 2px solid $gray2;
   }
+}
+.dataPicker::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  background: url("../../../public/svg/calendar.svg") no-repeat;
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 1;
 }

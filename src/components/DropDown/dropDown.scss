@@ -1,0 +1,57 @@
+@import "../../globalStyles/color.scss";
+
+.container-DropDown {
+  position: relative;
+  width: 100%;
+}
+
+.dropDown {
+  position: relative;
+  width: 100%;
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 500;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  cursor: pointer;
+}
+
+.selectedOption {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: flex;
+  justify-content: space-between;
+}
+
+.options {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  display: none;
+}
+
+.options.open {
+  display: block;
+}
+
+.option {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.option:hover {
+  background-color: $blue7;
+}
+.option:active {
+    background-color: $blue2;
+  }
+  

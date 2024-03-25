@@ -4,18 +4,18 @@ import "./search.scss";
 interface SearchProps {
   block?: boolean;
   className?: string;
-  postfix?: string | React.ReactNode;
+  prefix?: string | React.ReactNode;
   onChange?: ChangeEventHandler<HTMLInputElement>;
-  err?: boolean;
   disabled?: boolean;
+  placeholder?: string;
 }
 const Search: React.FC<SearchProps> = ({
   block,
-  postfix,
+  prefix,
   onChange,
   className,
-  err,
   disabled,
+  placeholder,
 }) => {
   const SearchClassName = classNames(
     "search",
@@ -23,14 +23,16 @@ const Search: React.FC<SearchProps> = ({
     className
   );
   return (
-    <div style={{ position: "relative" }}>
+    <div className="relative">
       <input
         type="search"
         className={SearchClassName}
         onChange={onChange}
         disabled={disabled}
+        title="search"
+        placeholder={placeholder}
       />
-      <span className="postfix">{postfix}</span>
+      <span className="prefix">{prefix}</span>
     </div>
   );
 };
