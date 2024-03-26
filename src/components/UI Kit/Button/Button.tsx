@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import React from "react";
 import "./button.scss";
 
 type TypeButton =
@@ -10,7 +11,7 @@ type TypeButton =
   | "icon_left"
   | "icon_right";
 
-interface ButtonProps {
+export interface ButtonProps {
   block?: boolean;
   className?: string;
   type?: TypeButton;
@@ -37,16 +38,20 @@ const Button: React.FC<ButtonProps> = ({
     { "button-block": block },
     className
   );
-  const iconClasses = classNames("button-icon", {
+  const iconContainerClasses = classNames("button-icon", {
     "icon-left": type === "icon_left",
     "icon-right": type === "icon_right",
   });
 
   return (
     <button className={buttonClasses} disabled={disabled} onClick={onClick}>
-      {type === "icon_left" && <span className={iconClasses}>{icon}</span>}
+      {type === "icon_left" && (
+        <span className={iconContainerClasses}>{icon}</span>
+      )}
       {children}
-      {type === "icon_right" && <span className={iconClasses}>{icon}</span>}
+      {type === "icon_right" && (
+        <span className={iconContainerClasses}>{icon}</span>
+      )}
     </button>
   );
 };

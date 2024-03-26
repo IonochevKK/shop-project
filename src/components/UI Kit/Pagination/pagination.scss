@@ -1,0 +1,36 @@
+@import "../../../globalStyles/color.scss";
+
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+.active {
+  background-color: $green1;
+  border: none;
+  border-radius: 7px;
+  button {
+    color: $white;
+  }
+  &:hover {
+    background-color: $green3;
+  }
+}
+.page-item {
+  margin-right: 5px;
+}
+
+.page-link {
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  color: $black;
+  background-color: transparent;
+  border-radius: 7px;
+  &:hover {
+    border: 1px solid $green3;
+  }
+}

@@ -1,0 +1,11 @@
+@import "../../../globalStyles/color.scss";
+.divider {
+  height: 1px;
+  width: 100%;
+}
+.divider-blue {
+  border: 1px solid $blue2;
+}
+.divider-gray {
+  border: 1px solid $gray3;
+}

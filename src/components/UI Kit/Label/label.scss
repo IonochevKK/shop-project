@@ -1,0 +1,48 @@
+@import "../../../globalStyles/color.scss";
+.label {
+  border-radius: 7px;
+  text-align: center;
+  display: inline-block;
+}
+.label-large {
+  padding: 10px 20px 10px 20px;
+  font-size: 14px;
+}
+.label-medium {
+  padding: 5px 10px 5px 10px;
+  font-size: 12px;
+}
+.label-small {
+  padding: 5px 10px 5px 10px;
+  font-size: 10px;
+}
+.label-success {
+  background-color: $green2;
+}
+.label-warn {
+  background-color: $yellow1;
+}
+.label-danger {
+  background-color: $red2;
+}
+.label-curs {
+  font-size: 20px;
+  background-color: $blue1;
+  color: $white;
+}
+.label-smallCard {
+  padding: 20px;
+}
+.label-largeCard {
+  padding: 30px;
+}
+.label-price {
+  font-size: 20px;
+  font-weight: 600;
+  color: $white;
+  background-color: $purple;
+}
+
+.label-block {
+  width: 100%;
+}

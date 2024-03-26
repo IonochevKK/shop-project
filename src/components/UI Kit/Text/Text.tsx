@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import React from "react";
-
+import "./text.scss";
 interface TextProps {
   h1?: boolean;
   h2?: boolean;
@@ -16,11 +16,13 @@ interface TextProps {
   body6?: boolean;
   caption1?: boolean;
   caption2?: boolean;
-  children?: React.ReactNode;
+  children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
+  color: string;
 }
 
-const Text: React.FC = ({
+const Text: React.FC<TextProps> = ({
   h1,
   h2,
   h3,
@@ -37,7 +39,9 @@ const Text: React.FC = ({
   caption2,
   className,
   children,
-}: TextProps) => {
+  style,
+  color,
+}) => {
   const textClasses = classNames(className, {
     "text-h1": h1,
     "text-h2": h2,
@@ -46,18 +50,39 @@ const Text: React.FC = ({
     "text-body2": body2,
     "text-body2_bold": body2_bold,
     "text-body3": body3,
-    "text-body_3": body3_bold,
+    "text-body3_bold": body3_bold,
     "text-body4": body4,
     "text-body4_bold": body4_bold,
     "text-body5": body5,
     "text-body6": body6,
     "text-caption1": caption1,
     "text-caption2": caption2,
+    style,
   });
-  if (h1) return <h1 className={textClasses}>{children}</h1>;
-  if (h2) return <h2 className={textClasses}>{children}</h2>;
-  if (h3) return <h3 className={textClasses}>{children}</h3>;
-  return <div className={textClasses}>{children}</div>;
+  const textColorStyle: React.CSSProperties = color ? { color: color } : {};
+  if (h1)
+    return (
+      <h1 className={textClasses} style={textColorStyle}>
+        {children}
+      </h1>
+    );
+  if (h2)
+    return (
+      <h2 className={textClasses} style={textColorStyle}>
+        {children}
+      </h2>
+    );
+  if (h3)
+    return (
+      <h3 className={textClasses} style={textColorStyle}>
+        {children}
+      </h3>
+    );
+  return (
+    <div className={textClasses} style={textColorStyle}>
+      {children}
+    </div>
+  );
 };
 
 export default Text;

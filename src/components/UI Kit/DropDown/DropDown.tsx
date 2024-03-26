@@ -1,8 +1,8 @@
 import React from "react";
 import "./dropDown.scss";
 import classNames from "classnames";
-import DropDownArrow from "../../../public/svg/dropdown_down.svg?react";
-import DropDownArrowUp from "../../../public/svg/dropdown_up.svg?react";
+import DropDownArrow from "../../../../public/svg/dropdown_down.svg?react";
+import DropDownArrowUp from "../../../../public/svg/dropdown_up.svg?react";
 interface Option {
   value: string;
   label: string;

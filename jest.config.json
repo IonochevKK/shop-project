@@ -1,0 +1,12 @@
+{
+  "testEnvironment": "jsdom",
+  "testMatch": ["**/__tests__/**/*.test.ts", "**/__tests__/**/*.test.tsx"],
+  "rootDir": "./",
+  "moduleDirectories": ["node_modules", "src"],
+  "transform": {
+    "^.+\\.tsx?$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "\\.(scss)$": "C:/Users/Jack/Documents/GitHub/shop-project/src/__tests__/plug/button.scss.stub"
+  }
+}
