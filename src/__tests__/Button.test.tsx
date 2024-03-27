@@ -1,9 +1,7 @@
 import "@testing-library/jest-dom";
 import { fireEvent, render } from "@testing-library/react";
-import "./plug/button.scss.stub";
-import "./plug/color.scss.stub";
 import Button from "../components/UI Kit/Button/Button";
-// Teсты для компонента Button
+
 describe("Button component", () => {
   test("renders button with children", () => {
     const { getByText } = render(<Button>Submit</Button>);

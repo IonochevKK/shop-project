@@ -5,7 +5,7 @@ type TypeCheckBox = "radio" | "checkbox";
 
 interface CheckBoxProps {
   onChange?: ChangeEventHandler<HTMLInputElement>;
-  type?: TypeCheckBox;
+  type: TypeCheckBox;
   disabled?: boolean;
   name?: string;
   children?: React.ReactNode;
@@ -14,13 +14,14 @@ interface CheckBoxProps {
 }
 
 const CheckBox: React.FC<CheckBoxProps> = ({
-  type = "checkbox",
+  type,
   onChange,
   disabled,
   value,
   name,
   children,
   classnames,
+  
 }) => {
   const CheckBoxClasses = classNames(
     "checkbox",

@@ -10,9 +10,9 @@ interface InputProps {
   placeholder?: string;
   block?: boolean;
   postfix?: React.ReactNode | string | number;
-  value?: string | number;
   disabled?: boolean;
   err?: boolean;
+  onChange?: () => void;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -21,9 +21,9 @@ const Input: React.FC<InputProps> = ({
   placeholder,
   block,
   postfix,
-  value,
   disabled,
   err,
+  onChange,
 }) => {
   const ClassNameInput = classNames(
     { "custom-err": err },
@@ -39,22 +39,27 @@ const Input: React.FC<InputProps> = ({
         <div className={type === "tel" ? " relative" : ""}>
           <div className={err ? "flex" : ""}>
             <input
+              onChange={onChange}
+              data-testid="input"
               placeholder={placeholder}
               className={ClassNameInput}
-              value={value}
               type={type}
               disabled={disabled}
               id={type}
             />
-            {type === "tel" && <span className="postfix">{postfix}</span>}
+            {type === "tel" && <span className="postfix" data-testid="postfix">{postfix}</span>}
           </div>
-          {err && <label className="label-err">Недопустимые символы</label>}
+          {err && <label className="label-err" data-testid="err">Недопустимые символы</label>}
         </div>
       )}
 
       {type === "bigText" && (
         <div className={err ? "flex" : ""}>
-          <textarea placeholder={placeholder} className={ClassNameInput} />
+          <textarea
+            placeholder={placeholder}
+            className={ClassNameInput}
+            data-testid="input"
+          />
           {err && <label className="label-err">Недопустимые символы</label>}
         </div>
       )}

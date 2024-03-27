@@ -1,9 +1,10 @@
+/// <reference types="vite-plugin-svgr/client" />
 import React from "react";
 import "./dropDown.scss";
 import classNames from "classnames";
 import DropDownArrow from "../../../../public/svg/dropdown_down.svg?react";
 import DropDownArrowUp from "../../../../public/svg/dropdown_up.svg?react";
-interface Option {
+export interface Option {
   value: string;
   label: string;
 }
@@ -23,10 +24,24 @@ const DropDown: React.FC<DropDownProps> = ({
 }) => {
   return (
     <div className="container-DropDown">
-      <div className="dropDown" onClick={onToggle}>
+      <div className="dropDown" onClick={onToggle} data-testid="dropDown">
         <div className="selectedOption">
           {selectedOption ? selectedOption.label : "Всё"}
-          <span>{isOpen ? <DropDownArrowUp /> : <DropDownArrow />}</span>
+          <span>
+            {isOpen ? (
+              <DropDownArrowUp
+                role="img"
+                name="DropDownArrowUp"
+                data-testid="dropDownArrowUp"
+              />
+            ) : (
+              <DropDownArrow
+                role="img"
+                name="DropDownArrow"
+                data-testid="dropDownArrow"
+              />
+            )}
+          </span>
         </div>
         <div className={classNames("options", { open: isOpen })}>
           {options.map((option, index) => (
