@@ -62,24 +62,24 @@ const Text: React.FC<TextProps> = ({
   const textColorStyle: React.CSSProperties = color ? { color: color } : {};
   if (h1)
     return (
-      <h1 className={textClasses} style={textColorStyle}>
+      <h1 className={textClasses} style={textColorStyle} data-testid="text_h1">
         {children}
       </h1>
     );
   if (h2)
     return (
-      <h2 className={textClasses} style={textColorStyle}>
+      <h2 className={textClasses} style={textColorStyle} data-testid="text_h2">
         {children}
       </h2>
     );
   if (h3)
     return (
-      <h3 className={textClasses} style={textColorStyle}>
+      <h3 className={textClasses} style={textColorStyle} data-testid="text_h3">
         {children}
       </h3>
     );
   return (
-    <div className={textClasses} style={textColorStyle}>
+    <div className={textClasses} style={textColorStyle} data-testid="text">
       {children}
     </div>
   );

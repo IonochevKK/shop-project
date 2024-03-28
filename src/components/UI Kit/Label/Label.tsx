@@ -25,6 +25,7 @@ const Label: React.FC<LabelProps> = ({
   return (
     <>
       <div
+        data-testid="label"
         className={classNames(
           "label",
           `label-${type}`,

@@ -25,6 +25,7 @@ const Search: React.FC<SearchProps> = ({
   return (
     <div className="relative">
       <input
+        data-testid="search"
         type="search"
         className={SearchClassName}
         onChange={onChange}
@@ -32,7 +33,9 @@ const Search: React.FC<SearchProps> = ({
         title="search"
         placeholder={placeholder}
       />
-      <span className="prefix">{prefix}</span>
+      <span className="prefix" data-testid="prefix">
+        {prefix}
+      </span>
     </div>
   );
 };

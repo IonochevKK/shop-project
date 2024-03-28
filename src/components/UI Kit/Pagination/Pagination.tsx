@@ -15,14 +15,21 @@ const Pagination: React.FC<PaginationProps> = ({
   totalPagesVisible,
 }) => {
   const totalPages = pages.length;
-  const visiblePages = getVisiblePages(currentPage, totalPages,totalPagesVisible);
+  const visiblePages = getVisiblePages(
+    currentPage,
+    totalPages,
+    totalPagesVisible
+  );
 
   const renderPageItem = (page: number) => (
     <li
       key={page}
       className={classNames("page-item", { active: currentPage === page })}
     >
-      <button className="page-link" onClick={() => onPageChange(page)}>
+      <button
+        className="page-link"
+        onClick={() => onPageChange(page)}
+      >
         {page}
       </button>
     </li>
