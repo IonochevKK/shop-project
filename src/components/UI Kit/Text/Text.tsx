@@ -19,7 +19,7 @@ interface TextProps {
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
-  color: string;
+  color?: string;
 }
 
 const Text: React.FC<TextProps> = ({

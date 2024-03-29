@@ -4,7 +4,7 @@ import classNames from "classnames";
 type DividerType = "gray" | "blue";
 
 interface DividerProps {
-  type?: DividerType;
+  type: DividerType;
 }
 const Divider: React.FC<DividerProps> = ({ type }) => {
   return (

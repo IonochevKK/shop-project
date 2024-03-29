@@ -1,0 +1,122 @@
+@import "../../globalStyles/breakPoints.scss";
+@import "../../globalStyles/color.scss";
+.burger-open {
+  background-color: transparent !important;
+  .line {
+    border: 1px solid $black !important;
+  }
+}
+.navbar {
+  width: 100%;
+  padding: 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .burger {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    direction: rtl;
+    background-color: #f3f3f3;
+    border-radius: 50%;
+    .line-container {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      .line {
+        width: 100%;
+        border: 2px solid $black;
+        background-color: $black;
+        border-radius: 2px;
+        &:nth-child(2) {
+          width: 70%;
+          text-align: left;
+        }
+      }
+    }
+  }
+
+  .navbar-top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    .logo {
+      display: flex;
+      align-items: center;
+      span {
+        margin-right: 5px;
+      }
+    }
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 50px;
+      @include table {
+        gap: 20px;
+      }
+    }
+    .search-container {
+      flex: 1;
+      margin: 0px 40px 0px 40px;
+      @include table {
+        margin: 0px 10px 0px 10px;
+      }
+    }
+  }
+  .navbar-bottom {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .pages {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      flex: 1;
+    }
+    .contacts {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 50px;
+      @include table {
+        gap: 20px;
+      }
+      .icon {
+        cursor: pointer;
+      }
+    }
+    .search-container {
+      width: 100%;
+      margin: 0px 40px 0px 40px;
+      @include table {
+        margin: 0px 5px 0px 5px;
+      }
+    }
+  }
+}
+
+.navbar.open {
+  // на будущий открывающийся навбар при клике на бургер
+}
+
+.burger.burger-open .line:nth-child(1) {
+  transform: translateY(14px) rotate(45deg);
+}
+
+.burger.burger-open .line:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.burger-open .line:nth-child(3) {
+  transform: translateY(-12px) rotate(-45deg);
+}

@@ -17,8 +17,7 @@
     padding: 0px 40px 0px 40px; /* Добавляем отступ слева */
   }
   :last-child {
-    margin: 0px 10px 0px 0px; /* Добавляем отступ справа */
-    width: 330px;
+    width: 100%;
+    max-width: 350px;
   }
-
 }

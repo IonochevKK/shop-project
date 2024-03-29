@@ -67,7 +67,7 @@ describe("test Input component", () => {
     expect(err).toBeInTheDocument();
   });
 
-  test(" onChange input function", () => {
+  test("onChange input function", () => {
     const onChange = jest.fn();
     const { getByTestId } = render(<Input type="text" onChange={onChange} />);
     const input = getByTestId("input");

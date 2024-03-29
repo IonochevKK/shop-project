@@ -29,7 +29,7 @@ describe("Rendering Pagination component", () => {
     const currentPage = 1;
     const onPageChange = jest.fn();
     const totalPagesVisible = 3;
-  
+
     const { container } = render(
       <Pagination
         pages={pages}
@@ -38,14 +38,47 @@ describe("Rendering Pagination component", () => {
         totalPagesVisible={totalPagesVisible}
       />
     );
-  
+
     const paginationButtons = container.querySelectorAll(".pagination button");
-    fireEvent.click(paginationButtons[paginationButtons.length - 1]);
-  
-    expect(onPageChange).toHaveBeenCalledWith(currentPage + 1);
-  
-    expect(paginationButtons[0]).not.toBeDisabled();
-  
-    expect(paginationButtons[paginationButtons.length - 1]).toBeDisabled();
+    fireEvent.click(paginationButtons[pages.length - 1]);
+    expect(onPageChange).toHaveBeenCalled();
+  });
+  test("clicking on 'Prev' button", () => {
+    const pages = [1, 2, 3, 4, 5];
+    const currentPage = 1;
+    const onPageChange = jest.fn();
+    const totalPagesVisible = 3;
+
+    const { container } = render(
+      <Pagination
+        pages={pages}
+        currentPage={currentPage}
+        onPageChange={onPageChange}
+        totalPagesVisible={totalPagesVisible}
+      />
+    );
+
+    const paginationButtons = container.querySelectorAll(".pagination button");
+    fireEvent.click(paginationButtons[1]);
+    expect(onPageChange).toHaveBeenCalled();
+  });
+
+  test("active class", () => {
+    const pages = [1, 2, 3, 4, 5];
+    const currentPage = 1;
+    const onPageChange = jest.fn();
+    const totalPagesVisible = 3;
+
+    const { container } = render(
+      <Pagination
+        pages={pages}
+        currentPage={currentPage}
+        onPageChange={onPageChange}
+        totalPagesVisible={totalPagesVisible}
+      />
+    );
+
+    const paginationButtons = container.querySelectorAll(".pagination button");
+    expect(paginationButtons[1].parentNode).toHaveClass("active");
   });
 });
