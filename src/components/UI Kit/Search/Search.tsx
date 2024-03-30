@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { ChangeEventHandler, RefObject } from "react";
+import React, { ChangeEventHandler } from "react";
 import "./search.scss";
 interface SearchProps {
   block?: boolean;
@@ -9,11 +9,20 @@ interface SearchProps {
   disabled?: boolean;
   placeholder?: string;
   dropdownVisible?: boolean; // управления видимостью выпадающего списка
-  dropdownItems?: string[]; // список элементов выпадающего списка
+  dropdownItems?: ItemKurs[]; // список элементов выпадающего списка
   onInputChange?: ChangeEventHandler<HTMLInputElement>; // обработчик изменения значения поля ввода
-  onDropdownItemClick?: (item: string) => void; // обработчик выбора элемента из выпадающего списка
+  onDropdownItemClick?: (item: ItemKurs) => void; // обработчик выбора элемента из выпадающего списка
   onChangeDropdownVisible?: (visible: boolean) => void; // Добавляем обработчик изменения видимости выпадающего списка
+  inputValue?: string;
 }
+
+export interface ItemKurs {
+  id: number;
+  nameKurs: string;
+  priseKurs: number;
+  timeKurs: number;
+}
+
 const Search: React.FC<SearchProps> = ({
   block,
   prefix,
@@ -25,12 +34,13 @@ const Search: React.FC<SearchProps> = ({
   className,
   disabled,
   placeholder,
+  inputValue,
 }) => {
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     if (onInputChange) onInputChange(event);
   };
 
-  const handleItemClick = (item: string) => {
+  const handleItemClick = (item: ItemKurs) => {
     if (onDropdownItemClick) onDropdownItemClick(item);
     if (onChangeDropdownVisible) onChangeDropdownVisible(false);
   };
@@ -51,6 +61,7 @@ const Search: React.FC<SearchProps> = ({
         disabled={disabled}
         title="search"
         placeholder={placeholder}
+        value={inputValue}
       />
       <span className="prefix" data-testid="prefix">
         {prefix}
@@ -63,7 +74,7 @@ const Search: React.FC<SearchProps> = ({
               className="dropdown-item"
               onClick={() => handleItemClick(item)}
             >
-              {item}
+              {item.nameKurs}
             </div>
           ))}
         </div>
