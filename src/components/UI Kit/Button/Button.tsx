@@ -21,6 +21,7 @@ export interface ButtonProps {
     event: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>
   ) => void;
   children?: React.ReactNode;
+  padding?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -31,6 +32,7 @@ const Button: React.FC<ButtonProps> = ({
   icon,
   onClick,
   children,
+  padding,
 }) => {
   const buttonClasses = classNames(
     "button",
@@ -42,9 +44,16 @@ const Button: React.FC<ButtonProps> = ({
     "icon-left": type === "icon_left",
     "icon-right": type === "icon_right",
   });
-
+  const PaddingButtonStyle: React.CSSProperties = padding
+    ? { padding: padding }
+    : {};
   return (
-    <button className={buttonClasses} disabled={disabled} onClick={onClick}>
+    <button
+      className={buttonClasses}
+      disabled={disabled}
+      onClick={onClick}
+      style={{ ...PaddingButtonStyle }}
+    >
       {type === "icon_left" && (
         <span className={iconContainerClasses}>{icon}</span>
       )}

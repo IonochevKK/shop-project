@@ -16,10 +16,12 @@ interface TextProps {
   body6?: boolean;
   caption1?: boolean;
   caption2?: boolean;
-  children: React.ReactNode;
+  children: React.ReactNode | string;
   className?: string;
   style?: React.CSSProperties;
   color?: string;
+  fontSize?: string;
+  lineHeight?: string;
 }
 
 const Text: React.FC<TextProps> = ({
@@ -41,6 +43,8 @@ const Text: React.FC<TextProps> = ({
   children,
   style,
   color,
+  fontSize,
+  lineHeight,
 }) => {
   const textClasses = classNames(className, {
     "text-h1": h1,
@@ -60,26 +64,48 @@ const Text: React.FC<TextProps> = ({
     style,
   });
   const textColorStyle: React.CSSProperties = color ? { color: color } : {};
+  const lineHeightStyle: React.CSSProperties = lineHeight
+    ? { lineHeight: lineHeight }
+    : {};
+  const fontSizeStyle: React.CSSProperties = fontSize
+    ? { fontSize: fontSize }
+    : {};
   if (h1)
     return (
-      <h1 className={textClasses} style={textColorStyle} data-testid="text_h1">
+      <h1
+        className={textClasses}
+        style={{ ...textColorStyle, ...fontSizeStyle, ...lineHeightStyle }}
+        data-testid="text_h1"
+      >
         {children}
       </h1>
     );
   if (h2)
     return (
-      <h2 className={textClasses} style={textColorStyle} data-testid="text_h2">
+      <h2
+        className={textClasses}
+        style={{ ...textColorStyle, ...fontSizeStyle, ...lineHeightStyle }}
+        data-testid="text_h2"
+      >
         {children}
       </h2>
     );
   if (h3)
     return (
-      <h3 className={textClasses} style={textColorStyle} data-testid="text_h3">
+      <h3
+        className={textClasses}
+        style={{ ...textColorStyle, ...fontSizeStyle, ...lineHeightStyle }}
+        data-testid="text_h3"
+      >
         {children}
       </h3>
     );
   return (
-    <div className={textClasses} style={textColorStyle} data-testid="text">
+    <div
+      className={textClasses}
+      style={{ ...textColorStyle, ...fontSizeStyle, ...lineHeightStyle }}
+      data-testid="text"
+    >
       {children}
     </div>
   );

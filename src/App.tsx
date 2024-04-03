@@ -1,10 +1,10 @@
 import "./App.css";
-import NavBar from "./components/NavBar/NavBar";
+import Home from "./pages/Home/Home";
 
 function App() {
   return (
-    <div style={{display:"flex", justifyContent:"center"}}>
-      <NavBar />
+    <div>
+      <Home />
     </div>
   );
 }

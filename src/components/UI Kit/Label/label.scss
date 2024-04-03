@@ -1,6 +1,6 @@
 @import "../../../globalStyles/color.scss";
 .label {
-  border-radius: 7px;
+  border-radius: 15px;
   text-align: center;
   display: inline-block;
 }
@@ -27,7 +27,7 @@
 }
 .label-curs {
   font-size: 20px;
-  background-color: $blue1;
+  background-color: $blue2;
   color: $white;
 }
 .label-smallCard {

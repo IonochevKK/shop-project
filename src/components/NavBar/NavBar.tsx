@@ -11,13 +11,16 @@ import VkSvg from "../../../public/svg/vk.svg?react";
 import YouTubeSvg from "../../../public/svg/youtube.svg?react";
 import SvgIcon from "../UI Kit/SvgIcon/SvgIcon";
 import { useResizeWidth } from "../../hooks/useResizeWidth";
+import { useSelector } from "react-redux";
+import { store } from "../../store/store";
+
+export type RootState = ReturnType<typeof store.getState>;
 
 const NavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isLogin, setisLogin] = useState<boolean>(false);
-
-  const [inputValue, setInputValue] = useState("");
-  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const isLogin = useSelector((state: RootState) => state.UserSession.user);
+  const [inputValue, setInputValue] = useState<string>("");
+  const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
   const [dropdownItems, setDropdownItems] = useState<ItemKurs[]>([]);
 
   const sizeScreenTablet = useResizeWidth(1024);
@@ -35,11 +38,8 @@ const NavBar: React.FC = () => {
       }
     };
 
-    if (dropdownVisible) {
+    if (dropdownVisible)
       document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -82,7 +82,7 @@ const NavBar: React.FC = () => {
   };
 
   return (
-    <nav style={{ width: "1400px" }}>
+    <nav>
       <div className={classNames("navbar", { open: isOpen })}>
         <div className="navbar-top">
           <div className="logo">

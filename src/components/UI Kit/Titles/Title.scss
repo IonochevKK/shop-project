@@ -2,22 +2,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-bottom: 60px;
   :first-child {
-    padding: 0px 40px 0px 40px; /* Добавляем отступ слева */
+    padding: 0px 40px 0px 0px; /* Добавляем отступ слева */
   }
   :last-child {
-    margin: 0px 40px 0px 0px; /* Добавляем отступ справа */
+    margin: 0px 0px 0px 20px; /* Добавляем отступ справа */
   }
 }
 .divider-flexText {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  :first-child {
-    padding: 0px 40px 0px 40px; /* Добавляем отступ слева */
-  }
+
   :last-child {
     width: 100%;
-    max-width: 350px;
+    white-space: nowrap;
   }
+}
+.divider-flexText > :first-child:not(:last-child) {
+  white-space: nowrap;
+  padding: 0px 20px 0px 0px;
 }

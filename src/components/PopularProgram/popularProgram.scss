@@ -1,0 +1,52 @@
+@import "../../globalStyles/breakPoints.scss";
+@import "../../globalStyles/color.scss";
+.popularProgram {
+  width: 100%;
+  background-color: $blue6;
+  padding: 70px 0px;
+  .popularProgram-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    .titleh1 {
+      @include mobile {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+        .divider-flexText {
+          h3 {
+            padding: 0px;
+          }
+        }
+      }
+      @include tablet {
+        padding: 0px 20px;
+        .divider-flexText {
+          :last-child {
+            padding: 0px 0px 0px 10px;
+          }
+        }
+      }
+    }
+    .cards-container {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding-top: 20px;
+      @media screen and (max-width: 1370px) {
+        justify-content: space-evenly;
+      }
+
+      .card-item {
+        @include mobile {
+          padding: 0px 20px;
+          flex:1;
+        }
+        margin-bottom: 20px;
+
+      }
+    }
+  }
+}
