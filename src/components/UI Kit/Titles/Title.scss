@@ -1,13 +1,21 @@
+@import "../../../globalStyles/breakPoints.scss";
 .divider-flex {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-bottom: 60px;
   :first-child {
-    padding: 0px 40px 0px 0px; /* Добавляем отступ слева */
+    white-space: nowrap;
+    padding: 0px 40px 0px 0px;
+    @include mobile {
+      padding: 0px 0px 0px 0px;
+    }
   }
   :last-child {
-    margin: 0px 0px 0px 20px; /* Добавляем отступ справа */
+    margin: 0px 0px 0px 20px;
+    @include mobile {
+      margin: 0px 0px 0px 0px;
+    }
   }
 }
 .divider-flexText {
@@ -18,6 +26,8 @@
   :last-child {
     width: 100%;
     white-space: nowrap;
+    flex: 1;
+    padding-left: 10px;
   }
 }
 .divider-flexText > :first-child:not(:last-child) {

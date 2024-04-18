@@ -3,7 +3,7 @@ export interface UserSessionState {
   user: boolean;
 }
 const initialState: UserSessionState = {
-  user: true,
+  user: false,
 };
 // Слайс для данных о текущей сессии, так же тут будут данные о текущем пользователе
 export const userSession = createSlice({

@@ -8,10 +8,15 @@ interface TitleProps {
   type: TitleType;
   children: string | React.ReactNode;
   value?: string | React.ReactNode;
+  style?: React.CSSProperties;
 }
-const Title: React.FC<TitleProps> = ({ value, children, type }) => {
+const Title: React.FC<TitleProps> = ({ value, children, type, style }) => {
   return (
-    <div className={classNames(`divider-${type}`)} data-testid="title">
+    <div
+      className={classNames(`divider-${type}`)}
+      data-testid="title"
+      style={style}
+    >
       {children}
       {type === "flexText" && (
         <Button type="link">

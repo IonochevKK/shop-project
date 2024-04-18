@@ -1,0 +1,28 @@
+@import "../../globalStyles/breakPoints.scss";
+.blockPosts {
+  width: 100%;
+  padding: 0px 20px 60px 20px;
+  .container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    .container-items {
+      width: 100%;
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      .card-item {
+        max-width: 460px;
+        @include tablet {
+          max-width: 360px;
+          min-height: 250px;
+        }
+        @include mobile {
+          max-width: 312px;
+        }
+      }
+    }
+  }
+}

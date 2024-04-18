@@ -9,7 +9,6 @@ import { useResizeWidth } from "../../hooks/useResizeWidth";
 const FilterProgram: React.FC = () => {
   const sizeScreenTablet = useResizeWidth(1024);
   const sizeScreenMobile = useResizeWidth(550);
-  console.log(sizeScreenMobile);
   const [selectedOtion, setSelectedOtion] = useState<Option | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 

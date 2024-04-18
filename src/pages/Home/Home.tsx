@@ -7,6 +7,9 @@ import PopularProgram from "../../components/PopularProgram/PopularProgram";
 import CardProgram, {
   CardProgramProps,
 } from "../../components/CardProgram/CardProgram";
+import SliderBlock from "../../components/SliderBlock/SliderBlock";
+import BlockPosts from "../../components/BlockPosts/BlockPosts";
+import DocumentsBlock from "../../components/DocumentsBlock/DocumentsBlock";
 
 const Home: React.FC = () => {
   const cards: CardProgramProps[] = [
@@ -67,6 +70,9 @@ const Home: React.FC = () => {
         <Spa />
         <FilterProgram />
         <PopularProgram cards={cards} />
+        <SliderBlock />
+        <BlockPosts />
+        <DocumentsBlock/>
       </Layout>
     </div>
   );

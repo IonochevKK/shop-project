@@ -13,7 +13,7 @@ interface InputProps {
   disabled?: boolean;
   err?: boolean;
   onChange?: () => void;
-}
+} 
 
 const Input: React.FC<InputProps> = ({
   type,

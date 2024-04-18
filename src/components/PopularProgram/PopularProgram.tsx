@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CardProgram, { CardProgramProps } from "../CardProgram/CardProgram";
 import "./popularProgram.scss";
 import Text from "../UI Kit/Text/Text";
@@ -9,8 +9,22 @@ interface PopularProgramProps {
   cards: CardProgramProps[];
 }
 const PopularProgram: React.FC<PopularProgramProps> = ({ cards }) => {
-  const sizeScreenTablet = useResizeWidth(830);
   const sizeScreenMobile = useResizeWidth(550);
+  const sizeScreenTablet = useResizeWidth(830);
+  const [cardsList, setCardsList] = useState(cards);
+
+  const changeCountCard = () => {
+    if (sizeScreenTablet) {
+      setCardsList(cards.slice(0, 3));
+    } else {
+      setCardsList(cards);
+    }
+  };
+
+  useEffect(() => {
+    changeCountCard();
+  }, [sizeScreenTablet]);
+
   return (
     <div className="popularProgram">
       <div className="popularProgram-container">
@@ -33,7 +47,7 @@ const PopularProgram: React.FC<PopularProgramProps> = ({ cards }) => {
           )}
         </div>
         <div className="cards-container">
-          {cards.map((card, i) => (
+          {cardsList.map((card, i) => (
             <div key={i} className="card-item">
               <CardProgram
                 id={card.id}

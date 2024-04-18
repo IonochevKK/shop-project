@@ -1,0 +1,166 @@
+@import "../../../globalStyles/color.scss";
+@import "../../../globalStyles/breakPoints.scss";
+.active {
+  background-color: $blue2 !important;
+}
+.slider {
+  width: 100%;
+  overflow: hidden;
+  .container {
+    --current-slide: 0;
+    max-width: 1400px;
+    position: relative;
+    transition: all 0.5s ease-in-out;
+    @include mobile {
+      position: relative;
+    }
+    .container-slides {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      transition: transform 0.5s ease-in-out;
+      @include mobile {
+        height: 500px;
+        position: relative;
+      }
+      .slide {
+        max-width: 500px;
+        width: 100%;
+        transform: translateX(0);
+        opacity: 0.9;
+
+        @include tablet {
+          max-width: 400px;
+        }
+        @include mobile {
+          max-width: 320px;
+          opacity: 0;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 100%;
+          transition: opacity 0.5s ease-in-out;
+        }
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+
+        &.center {
+          opacity: 1;
+          z-index: 2;
+          transition: transform 0.5s ease-in-out;
+          transform: translateX(0%);
+        }
+        &.right {
+          cursor: pointer;
+          z-index: 1;
+          transition: transform 0.5s ease-in-out;
+          transform: translateX(-30%) scale(0.9);
+        }
+
+        &.left {
+          cursor: pointer;
+          z-index: 1;
+          transition: transform 0.5s ease-in-out;
+          transform: translateX(30%) scale(0.9);
+        }
+
+        &.hidden {
+          display: none;
+        }
+      }
+    }
+
+    .buttonItems {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+      max-width: 170px;
+      z-index: 2;
+      background-color: transparent;
+      @include mobile {
+        justify-content: space-between;
+      }
+
+      .item {
+        width: 13px;
+        height: 13px;
+        background-color: $gray2;
+        border-radius: 50%;
+        gap: 4px;
+        cursor: pointer;
+        &:active {
+          background-color: $blue2;
+        }
+        @include mobile {
+          border-radius: 0%;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          background-color: transparent;
+          cursor: default;
+        }
+      }
+
+      .prev,
+      .next {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
+    }
+
+    .container-items {
+      width: 100%;
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      height: 490px;
+      .slide {
+        width: 100%;
+        flex: 0 0 33.333%;
+        transition: transform 0.5s ease-in-out;
+        transform: translateX(calc(-50.333% * var(--current-slide)));
+        @include mobile {
+          flex: 0 0 100%;
+          width: 100%;
+          transform: translateX(calc(-100% * var(--current-slide)));
+        }
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+      .buttonitems {
+        position: absolute;
+        bottom: 0px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: space-between;
+        gap: 6px;
+        width: 100%;
+        max-width: 170px;
+        z-index: 2;
+        background-color: transparent;
+        .item {
+          .prev,
+          .next {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
