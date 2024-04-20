@@ -4,12 +4,11 @@ import "./home.scss";
 import Spa from "../../components/Spa/Spa";
 import FilterProgram from "../../components/FilterProgram/FilterProgram";
 import PopularProgram from "../../components/PopularProgram/PopularProgram";
-import CardProgram, {
-  CardProgramProps,
-} from "../../components/CardProgram/CardProgram";
+import { CardProgramProps } from "../../components/CardProgram/CardProgram";
 import SliderBlock from "../../components/SliderBlock/SliderBlock";
 import BlockPosts from "../../components/BlockPosts/BlockPosts";
 import DocumentsBlock from "../../components/DocumentsBlock/DocumentsBlock";
+import BlockContact from "../../components/BlockContact/BlockContact";
 
 const Home: React.FC = () => {
   const cards: CardProgramProps[] = [
@@ -72,7 +71,8 @@ const Home: React.FC = () => {
         <PopularProgram cards={cards} />
         <SliderBlock />
         <BlockPosts />
-        <DocumentsBlock/>
+        <DocumentsBlock />
+        <BlockContact />
       </Layout>
     </div>
   );

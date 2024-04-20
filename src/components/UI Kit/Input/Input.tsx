@@ -12,8 +12,9 @@ interface InputProps {
   postfix?: React.ReactNode | string | number;
   disabled?: boolean;
   err?: boolean;
+  name?: string;
   onChange?: () => void;
-} 
+}
 
 const Input: React.FC<InputProps> = ({
   type,
@@ -23,6 +24,7 @@ const Input: React.FC<InputProps> = ({
   postfix,
   disabled,
   err,
+  name,
   onChange,
 }) => {
   const ClassNameInput = classNames(
@@ -37,7 +39,7 @@ const Input: React.FC<InputProps> = ({
     <>
       {type !== "bigText" && (
         <div className={type === "tel" ? " relative" : ""}>
-          <div className={err ? "flex" : ""}>
+          <label className={err ? "flex" : ""} htmlFor={name}>
             <input
               onChange={onChange}
               data-testid="input"
@@ -46,10 +48,19 @@ const Input: React.FC<InputProps> = ({
               type={type}
               disabled={disabled}
               id={type}
+              name={name}
             />
-            {type === "tel" && <span className="postfix" data-testid="postfix">{postfix}</span>}
-          </div>
-          {err && <label className="label-err" data-testid="err">Недопустимые символы</label>}
+            {type === "tel" && (
+              <span className="postfix" data-testid="postfix">
+                {postfix}
+              </span>
+            )}
+          </label>
+          {err && (
+            <label className="label-err" data-testid="err">
+              Недопустимые символы
+            </label>
+          )}
         </div>
       )}
 
