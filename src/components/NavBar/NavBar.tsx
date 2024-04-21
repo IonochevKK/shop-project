@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import "./navbar.scss";
 import classNames from "classnames";
 import Logo from "../../../public/svg/logo.svg?react";
@@ -13,15 +13,21 @@ import SvgIcon from "../UI Kit/SvgIcon/SvgIcon";
 import { useResizeWidth } from "../../hooks/useResizeWidth";
 import { useSelector } from "react-redux";
 import { store } from "../../store/store";
+import Modal from "../UI Kit/Modal/Modal";
+import Form from "../UI Kit/Form/Form";
 
 export type RootState = ReturnType<typeof store.getState>;
 
 const NavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const isLogin = useSelector((state: RootState) => state.UserSession.user);
   const [inputValue, setInputValue] = useState<string>("");
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
   const [dropdownItems, setDropdownItems] = useState<ItemKurs[]>([]);
+
+  const openModal = useCallback(() => setIsOpenModal(true), []);
+  const closeModal = useCallback(() => setIsOpenModal(false), []);
 
   const sizeScreenTablet = useResizeWidth(1024);
   const sizeScreenMobile = useResizeWidth(600);
@@ -75,7 +81,7 @@ const NavBar: React.FC = () => {
 
   const handleDropdownVisibleChange = (visible: boolean) => {
     setDropdownVisible(visible);
-  }; // Закрытие списка при нажатии на выпадающий элемент
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -83,6 +89,15 @@ const NavBar: React.FC = () => {
 
   return (
     <nav>
+      {isOpenModal && (
+        <Modal isOpen={isOpenModal} closeModal={closeModal}>
+          <Form
+            type="text"
+            title={<Text h3>Задайте нам вопрос и мы вам на него ответим!</Text>}
+            blockButton
+          />
+        </Modal>
+      )}
       <div className={classNames("navbar", { open: isOpen })}>
         <div className="navbar-top">
           <div className="logo">
@@ -119,7 +134,7 @@ const NavBar: React.FC = () => {
                       <Text body6>Вход или регистрация</Text>
                     </Button>
                     {!sizeScreenTablet && (
-                      <Button type="secondary_2">
+                      <Button type="secondary_2" onClick={openModal}>
                         <Text body5>Задать вопрос</Text>
                       </Button>
                     )}

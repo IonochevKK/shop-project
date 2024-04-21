@@ -1,5 +1,5 @@
 /// <reference types="vite-plugin-svgr/client" />
-import React from "react";
+import React, { useState } from "react";
 import "./dropDown.scss";
 import classNames from "classnames";
 import DropDownArrow from "../../../../public/svg/dropdown_down.svg?react";
@@ -10,23 +10,28 @@ export interface Option {
 }
 interface DropDownProps {
   options: Option[];
-  selectedOption: Option | null;
-  isOpen: boolean;
-  onToggle: () => void;
-  onSelectOption: (option: Option) => void;
 }
-const DropDown: React.FC<DropDownProps> = ({
-  options,
-  selectedOption,
-  isOpen,
-  onToggle,
-  onSelectOption,
-}) => {
+const DropDown: React.FC<DropDownProps> = ({ options }) => {
+  const [selectedOtion, setSelectedOtion] = useState<Option | null>(null);
+
+  const [isOpen, setIsOpen] = useState(false);
+  const handleToggleDropDown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleSelectOption = (option: Option) => {
+    setSelectedOtion(option);
+    setIsOpen(false);
+  };
   return (
     <div className="container-DropDown">
-      <div className="dropDown" onClick={onToggle} data-testid="dropDown">
+      <div
+        className="dropDown"
+        onClick={handleToggleDropDown}
+        data-testid="dropDown"
+      >
         <div className="selectedOption">
-          {selectedOption ? selectedOption.label : "Всё"}
+          {selectedOtion ? selectedOtion.label : "Всё"}
           <span>
             {isOpen ? (
               <DropDownArrowUp
@@ -48,7 +53,7 @@ const DropDown: React.FC<DropDownProps> = ({
             <div
               key={index}
               className="option"
-              onClick={() => onSelectOption(option)}
+              onClick={() => handleSelectOption(option)}
             >
               {option.label}
             </div>

@@ -14,24 +14,7 @@
       align-items: center;
       justify-content: space-between;
       .blockForm {
-        .form {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          gap: 30px;
-          @include tablet {
-            padding-right: 100px;
-          }
-          @include mobile {
-            padding: 0px;
-          }
-          form {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-          }
-        }
+        padding: 20px;
       }
       .map {
         display: flex;

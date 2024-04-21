@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import Title from "../UI Kit/Titles/TItle";
 import Text from "../UI Kit/Text/Text";
 import Divider from "../UI Kit/Divider/Divider";
@@ -9,8 +8,8 @@ import { useResizeWidth } from "../../hooks/useResizeWidth";
 const FilterProgram: React.FC = () => {
   const sizeScreenTablet = useResizeWidth(1024);
   const sizeScreenMobile = useResizeWidth(550);
-  const [selectedOtion, setSelectedOtion] = useState<Option | null>(null);
-  const [isOpen, setIsOpen] = useState(false);
+  // const [selectedOtion, setSelectedOtion] = useState<Option | null>(null);
+  // const [isOpen, setIsOpen] = useState(false);
 
   const options: Option[] = [
     {
@@ -27,14 +26,14 @@ const FilterProgram: React.FC = () => {
     },
   ];
 
-  const handleToggleDropDown = () => {
-    setIsOpen(!isOpen);
-  };
+  // const handleToggleDropDown = () => {
+  //   setIsOpen(!isOpen);
+  // };
 
-  const handleSelectOption = (option: Option) => {
-    setSelectedOtion(option);
-    setIsOpen(false);
-  };
+  // const handleSelectOption = (option: Option) => {
+  //   setSelectedOtion(option);
+  //   setIsOpen(false);
+  // };
   return (
     <div className="filter-program">
       <div className="filter-container">
@@ -52,37 +51,19 @@ const FilterProgram: React.FC = () => {
                   <span>
                     <Text body3>Вид программы:</Text>
                   </span>
-                  <DropDown
-                    options={options}
-                    selectedOption={selectedOtion}
-                    isOpen={isOpen}
-                    onToggle={handleToggleDropDown}
-                    onSelectOption={handleSelectOption}
-                  />
+                  <DropDown options={options} />
                 </div>
                 <div className="item">
                   <span>
                     <Text body3>Специальность:</Text>
                   </span>
-                  <DropDown
-                    options={options}
-                    selectedOption={selectedOtion}
-                    isOpen={isOpen}
-                    onToggle={handleToggleDropDown}
-                    onSelectOption={handleSelectOption}
-                  />
+                  <DropDown options={options} />
                 </div>
                 <div className="item">
                   <span>
                     <Text body3>Количество часов:</Text>
                   </span>
-                  <DropDown
-                    options={options}
-                    selectedOption={selectedOtion}
-                    isOpen={isOpen}
-                    onToggle={handleToggleDropDown}
-                    onSelectOption={handleSelectOption}
-                  />
+                  <DropDown options={options} />
                 </div>
               </>
             )}
@@ -94,25 +75,13 @@ const FilterProgram: React.FC = () => {
                     <span>
                       <Text body3>Вид программы:</Text>
                     </span>
-                    <DropDown
-                      options={options}
-                      selectedOption={selectedOtion}
-                      isOpen={isOpen}
-                      onToggle={handleToggleDropDown}
-                      onSelectOption={handleSelectOption}
-                    />
+                    <DropDown options={options} />
                   </div>
                   <div className="item">
                     <span>
                       <Text body3>Специальность:</Text>
                     </span>
-                    <DropDown
-                      options={options}
-                      selectedOption={selectedOtion}
-                      isOpen={isOpen}
-                      onToggle={handleToggleDropDown}
-                      onSelectOption={handleSelectOption}
-                    />
+                    <DropDown options={options} />
                   </div>
                 </div>
                 <div className="items-bottom">
@@ -120,13 +89,7 @@ const FilterProgram: React.FC = () => {
                     <span>
                       <Text body3>Количество часов:</Text>
                     </span>
-                    <DropDown
-                      options={options}
-                      selectedOption={selectedOtion}
-                      isOpen={isOpen}
-                      onToggle={handleToggleDropDown}
-                      onSelectOption={handleSelectOption}
-                    />
+                    <DropDown options={options} />
                   </div>
                   <div className="item ite">
                     <div className="button">
@@ -144,37 +107,19 @@ const FilterProgram: React.FC = () => {
                   <span>
                     <Text body3>Вид программы:</Text>
                   </span>
-                  <DropDown
-                    options={options}
-                    selectedOption={selectedOtion}
-                    isOpen={isOpen}
-                    onToggle={handleToggleDropDown}
-                    onSelectOption={handleSelectOption}
-                  />
+                  <DropDown options={options} />
                 </div>
                 <div className="item">
                   <span>
                     <Text body3>Специальность:</Text>
                   </span>
-                  <DropDown
-                    options={options}
-                    selectedOption={selectedOtion}
-                    isOpen={isOpen}
-                    onToggle={handleToggleDropDown}
-                    onSelectOption={handleSelectOption}
-                  />
+                  <DropDown options={options} />
                 </div>
                 <div className="item">
                   <span>
                     <Text body3>Количество часов:</Text>
                   </span>
-                  <DropDown
-                    options={options}
-                    selectedOption={selectedOtion}
-                    isOpen={isOpen}
-                    onToggle={handleToggleDropDown}
-                    onSelectOption={handleSelectOption}
-                  />
+                  <DropDown options={options} />
                 </div>
               </>
             )}

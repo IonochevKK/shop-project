@@ -1,0 +1,43 @@
+@import "../../../globalStyles/breakPoints.scss";
+.cookie {
+  width: 100%;
+  z-index: 999;
+  position: fixed;
+  bottom: -200px;
+  background-color: white;
+  padding: 30px 0px;
+  .cookie-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    padding: 0px 20px;
+    @include tablet {
+      flex-direction: column;
+    }
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      cursor: pointer;
+    }
+    .info {
+      max-width: 1080px;
+    }
+    .buttons {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      @include tablet {
+        margin-top: 20px;
+      }
+    }
+  }
+}
+.show {
+  bottom: 0;
+  transition: bottom 0.5s ease;
+}

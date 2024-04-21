@@ -16,7 +16,7 @@ interface SliderProps {
 }
 
 const Slider: React.FC<SliderProps> = ({ slides, type }) => {
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [currentIndex, setCurrentIndex] = useState<number>(1);
   const sizeScreenMobile = useResizeWidth(550);
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => {

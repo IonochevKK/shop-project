@@ -70,6 +70,8 @@ const Input: React.FC<InputProps> = ({
             placeholder={placeholder}
             className={ClassNameInput}
             data-testid="input"
+            name={name}
+            style={{height: "auto", resize:"none"}}
           />
           {err && <label className="label-err">Недопустимые символы</label>}
         </div>

@@ -10,13 +10,30 @@ import SbpCardSvg from "../../../public/svg/sbp.svg?react";
 import { useResizeWidth } from "../../hooks/useResizeWidth";
 import { useSelector } from "react-redux";
 import { store } from "../../store/store";
+import Modal from "../UI Kit/Modal/Modal";
+import Form from "../UI Kit/Form/Form";
+import { useCallback, useState } from "react";
 export type RootState = ReturnType<typeof store.getState>;
 const Footer = () => {
   const isLogin = useSelector((state: RootState) => state.UserSession.user);
   const sizeScreenTablet = useResizeWidth(1024);
   const sizeScreenMobile = useResizeWidth(550);
+
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const openModal = useCallback(() => setIsOpenModal(true), []);
+  const closeModal = useCallback(() => setIsOpenModal(false), []);
+
   return (
     <footer>
+      {isOpenModal && (
+        <Modal isOpen={isOpenModal} closeModal={closeModal}>
+          <Form
+            type="text"
+            title={<Text h3>Задайте нам вопрос и мы вам на него ответим!</Text>}
+            blockButton
+          />
+        </Modal>
+      )}
       <div className="footer">
         <Divider type="gray" />
         <div className="footer-top">
@@ -59,7 +76,7 @@ const Footer = () => {
                   <Text body6>Выйти из личного кабинета</Text>
                 </Button>
               )}
-              <Button type="secondary_2">
+              <Button type="secondary_2" onClick={openModal}>
                 <Text body5>Задать вопрос</Text>
               </Button>
             </div>

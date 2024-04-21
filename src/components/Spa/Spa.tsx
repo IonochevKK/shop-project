@@ -1,15 +1,37 @@
-import React from "react";
-import SpaSvg from "../../../public/svg/spa.svg?react";
+import React, { useCallback, useState } from "react";
 import SpaImg from "../../../public/img/logo-spa.png";
 import Text from "../UI Kit/Text/Text";
 import "./spa.scss";
 import Button from "../UI Kit/Button/Button";
 import { useResizeWidth } from "../../hooks/useResizeWidth";
+import Form from "../UI Kit/Form/Form";
+import { createPortal } from "react-dom";
+import Modal from "../UI Kit/Modal/Modal";
 const Spa: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const sizeScreenTablet = useResizeWidth(1024);
   const sizeScreenMobile = useResizeWidth(600);
+
+  const openModal = useCallback(() => setIsOpen(true), []);
+  const closeModal = useCallback(() => setIsOpen(false), []);
+  
   return (
     <div className="spa">
+      {isOpen && (
+        <>
+          <Modal isOpen={isOpen} closeModal={closeModal}>
+            <Form
+              type="noText"
+              blockButton
+              title={
+                <Text h3>
+                  Оставьте свои контактные данные и мы с вами свяжемся!
+                </Text>
+              }
+            />
+          </Modal>
+        </>
+      )}
       <div className="spa-container">
         <div className="spa-text">
           <div className="title">
@@ -42,7 +64,7 @@ const Spa: React.FC = () => {
             )}
           </div>
           <div className="button">
-            <Button type="primary">
+            <Button type="primary" onClick={openModal}>
               <Text body3>Оставить заявку</Text>
             </Button>
           </div>
