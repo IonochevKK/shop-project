@@ -15,19 +15,26 @@ import { useSelector } from "react-redux";
 import { store } from "../../store/store";
 import Modal from "../UI Kit/Modal/Modal";
 import Form from "../UI Kit/Form/Form";
+import LoginOrRegister from "../LoginOrRegister/LoginOrRegister";
 
 export type RootState = ReturnType<typeof store.getState>;
 
 const NavBar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const [isOpenLogin, setIsOpenLogin] = useState<boolean>(false);
+
   const isLogin = useSelector((state: RootState) => state.UserSession.user);
+
   const [inputValue, setInputValue] = useState<string>("");
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
   const [dropdownItems, setDropdownItems] = useState<ItemKurs[]>([]);
 
   const openModal = useCallback(() => setIsOpenModal(true), []);
   const closeModal = useCallback(() => setIsOpenModal(false), []);
+
+  const openLoginOrRegister = useCallback(() => setIsOpenLogin(true), []);
+  const closeLoginOrRegister = useCallback(() => setIsOpenLogin(false), []);
 
   const sizeScreenTablet = useResizeWidth(1024);
   const sizeScreenMobile = useResizeWidth(600);
@@ -84,7 +91,7 @@ const NavBar: React.FC = () => {
   };
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    setIsOpenMenu(!isOpenMenu);
   };
 
   return (
@@ -98,7 +105,8 @@ const NavBar: React.FC = () => {
           />
         </Modal>
       )}
-      <div className={classNames("navbar", { open: isOpen })}>
+      {isOpenLogin && <LoginOrRegister closeLogin={closeLoginOrRegister} />}
+      <div className={classNames("navbar", { open: isOpenMenu })}>
         <div className="navbar-top">
           <div className="logo">
             <span>
@@ -130,7 +138,7 @@ const NavBar: React.FC = () => {
               <>
                 {!isLogin && (
                   <>
-                    <Button type="secondary_2">
+                    <Button type="secondary_2" onClick={openLoginOrRegister}>
                       <Text body6>Вход или регистрация</Text>
                     </Button>
                     {!sizeScreenTablet && (
@@ -158,7 +166,7 @@ const NavBar: React.FC = () => {
 
           {sizeScreenMobile && (
             <div
-              className={classNames("burger", { "burger-open": isOpen })}
+              className={classNames("burger", { "burger-open": isOpenMenu })}
               onClick={toggleMenu}
             >
               <div className="line-container">
@@ -171,7 +179,7 @@ const NavBar: React.FC = () => {
         </div>
         <Divider type="gray" />
         <div className="navbar-bottom">
-          {!isOpen && (
+          {!isOpenMenu && (
             <>
               {sizeScreenMobile && (
                 <div className="search-container" ref={dropdownRef}>
@@ -234,7 +242,7 @@ const NavBar: React.FC = () => {
               )}
             </>
           )}
-          {isOpen && (
+          {isOpenMenu && (
             <div className="burger-menu">
               {isLogin && (
                 <div className="link-icons">
@@ -258,7 +266,7 @@ const NavBar: React.FC = () => {
                 </Button>
               </div>
               {!isLogin && (
-                <Button type="secondary_2">
+                <Button type="secondary_2" onClick={openLoginOrRegister}>
                   <Text body6>Вход или регистрация</Text>
                 </Button>
               )}

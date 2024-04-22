@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../../components/Layout/Layout";
+import Layout from "../../components/FilterProgram/Layout/Layout";
 import "./home.scss";
 import Spa from "../../components/Spa/Spa";
 import FilterProgram from "../../components/FilterProgram/FilterProgram";

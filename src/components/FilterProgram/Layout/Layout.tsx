@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from "react";
-import Footer from "../Footer/Footer";
-import NavBar from "../NavBar/NavBar";
+import Footer from "../../Footer/Footer";
+import NavBar from "../../NavBar/NavBar";
 import "./layout.scss";
-import Cookie from "../UI Kit/Cookie/Cookie";
+import Cookie from "../../UI Kit/Cookie/Cookie";
 interface LayoutProps {
   children?: React.ReactNode;
 }

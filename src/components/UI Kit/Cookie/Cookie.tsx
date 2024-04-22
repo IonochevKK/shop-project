@@ -12,7 +12,6 @@ const Cookie: React.FC<CookieProps> = ({ onClose }) => {
   const [acceptedCookies, setAcceptedCookies] = useState<boolean>(true);
 
   const sizeScreenTablet = useResizeWidth(1024);
-  const sizeScreenMobile = useResizeWidth(600);
 
   useEffect(() => {
     const hasAcceptedCookies = localStorage.getItem("acceptedCookies");
@@ -27,7 +26,7 @@ const Cookie: React.FC<CookieProps> = ({ onClose }) => {
     localStorage.setItem("acceptedCookies", "true");
     if (onClose) onClose();
   };
-localStorage.clear();
+  localStorage.clear(); // для тестов
   return (
     <div className={`cookie ${!acceptedCookies ? "show" : ""}`}>
       <div className="cookie-container">
@@ -54,7 +53,11 @@ localStorage.clear();
           </div>
         </div>
         <div className="buttons">
-          <Button type="primary" onClick={handleAccept} block={sizeScreenTablet}>
+          <Button
+            type="primary"
+            onClick={handleAccept}
+            block={sizeScreenTablet}
+          >
             <Text body4> Принять и закрыть</Text>
           </Button>
         </div>
