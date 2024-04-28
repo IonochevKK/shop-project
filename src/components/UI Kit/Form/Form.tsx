@@ -45,7 +45,7 @@ const Form: React.FC<FormProps> = ({ type, blockButton, title, desc }) => {
       <div className="form">
         <div className="title">{title}</div>
         <div className="desc">{desc}</div>
-        <form onClick={handleSumbmit}>
+        <form onSubmit={handleSumbmit}>
           <Input type="text" name="username" block placeholder="Имя" />
           <Input
             type="tel"

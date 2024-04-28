@@ -13,11 +13,17 @@ import { store } from "../../store/store";
 import Modal from "../UI Kit/Modal/Modal";
 import Form from "../UI Kit/Form/Form";
 import { useCallback, useState } from "react";
+import LoginOrRegister from "../LoginOrRegister/LoginOrRegister";
 export type RootState = ReturnType<typeof store.getState>;
 const Footer = () => {
   const isLogin = useSelector((state: RootState) => state.UserSession.user);
+
   const sizeScreenTablet = useResizeWidth(1024);
   const sizeScreenMobile = useResizeWidth(550);
+
+  const [isOpenLogin, setIsOpenLogin] = useState<boolean>(false);
+  const openLoginOrRegister = useCallback(() => setIsOpenLogin(true), []);
+  const closeLoginOrRegister = useCallback(() => setIsOpenLogin(false), []);
 
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const openModal = useCallback(() => setIsOpenModal(true), []);
@@ -34,6 +40,7 @@ const Footer = () => {
           />
         </Modal>
       )}
+      {isOpenLogin && <LoginOrRegister closeLogin={closeLoginOrRegister} />}
       <div className="footer">
         <Divider type="gray" />
         <div className="footer-top">
@@ -67,7 +74,7 @@ const Footer = () => {
           {!sizeScreenMobile && (
             <div className="buttons">
               {!isLogin && (
-                <Button type="secondary_2">
+                <Button type="secondary_2" onClick={openLoginOrRegister}>
                   <Text body6>Вход или регистрация</Text>
                 </Button>
               )}
