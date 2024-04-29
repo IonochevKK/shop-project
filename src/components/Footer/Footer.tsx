@@ -16,7 +16,7 @@ import { useCallback, useState } from "react";
 import LoginOrRegister from "../LoginOrRegister/LoginOrRegister";
 export type RootState = ReturnType<typeof store.getState>;
 const Footer = () => {
-  const isLogin = useSelector((state: RootState) => state.UserSession.user);
+  const isLogin = useSelector((state: RootState) => state.UserSession.id);
 
   const sizeScreenTablet = useResizeWidth(1024);
   const sizeScreenMobile = useResizeWidth(550);

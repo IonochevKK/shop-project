@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./loginOrRegister.scss";
 import { createPortal } from "react-dom";
 import Text from "../UI Kit/Text/Text";
@@ -6,22 +6,95 @@ import Input from "../UI Kit/Input/Input";
 import Button from "../UI Kit/Button/Button";
 import CheckBox from "../UI Kit/CheckBox/CheckBox";
 import CloseSvg from "../../../public/svg/close.svg?react";
+import { getPhoneNumber } from "../../utils/getPhoneNumberInInput";
+import { signInWithPhoneNumber, RecaptchaVerifier } from "firebase/auth";
+import { auth } from "../../libs/firebase";
+import OtpInput from "../UI Kit/OtpInput/OtpInput";
+import { useDispatch } from "react-redux";
+import { updateUserSession } from "../../store/userSession-slise";
+import { getSessionFromToLocalStorage } from "../../utils/getSessionFromToLocalStorage";
+declare global {
+  interface Window {
+    recaptchaVerifier: RecaptchaVerifier;
+    confirmationResult: import("firebase/auth").ConfirmationResult;
+  }
+}
 interface LoginOrRegisterProps {
   closeLogin: () => void;
 }
+interface PhoneNumber {
+  formatedNumber: string;
+}
+
 const LoginOrRegister: React.FC<LoginOrRegisterProps> = ({ closeLogin }) => {
-  const [phoneUser, setPhoneUser] = useState({});
+  const dispatch = useDispatch();
+  const [phoneUser, setPhoneUser] = useState<PhoneNumber>({
+    formatedNumber: "",
+  });
+  const [loading, setLoading] = useState<boolean>(false);
+  const [isSeeOtp, setIsSeeOtp] = useState<boolean>(false);
+  const [otp, setOTP] = useState("");
   const root = document.getElementById("root") as Element;
-  const handleSumbmit = (e: React.FormEvent<HTMLFormElement>) => {
+
+  const handleSumbmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const { phone } = Object.fromEntries(formData);
-    console.log(phone);
-    // setPhoneUser({
-    //   phone: phone,
-    // });
+    const phone = await getPhoneNumber(e);
+    setPhoneUser(phone);
   };
-  // console.log(phoneUser);
+
+  function onCaptchVerify() {
+    if (!window.recaptchaVerifier) {
+      window.recaptchaVerifier = new RecaptchaVerifier(auth, "sign-in-button", {
+        size: "invisible",
+        callback: () => {
+          onSignInSubmit();
+        },
+      });
+    }
+  }
+  function onOTPVerify() {
+    setLoading(true);
+    window.confirmationResult
+      .confirm(otp)
+      .then(async (res) => {
+        console.log(res.user);
+        dispatch(
+          updateUserSession({
+            id: res.user.uid,
+            name: res.user.displayName,
+            email: res.user.email,
+            // createdAT: res.user.metadata,
+          })
+        );
+        closeLogin();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  const onSignInSubmit = () => {
+    setLoading(true);
+    onCaptchVerify();
+    const appVerifier = window.recaptchaVerifier;
+    if (phoneUser.formatedNumber.length > 0) {
+      signInWithPhoneNumber(auth, phoneUser.formatedNumber, appVerifier)
+        .then((confirmationResult) => {
+          window.confirmationResult = confirmationResult;
+          setLoading(false);
+          setIsSeeOtp(true);
+        })
+        .catch((error) => {
+          console.log(error);
+          setLoading(false);
+        });
+    }
+  };
+
+  const handleOTPChange = (value: string) => {
+    setOTP(value);
+  };
+
   return (
     <>
       {createPortal(
@@ -35,18 +108,49 @@ const LoginOrRegister: React.FC<LoginOrRegisterProps> = ({ closeLogin }) => {
                 <div className="title">
                   <Text h2>Войти или зарегистрироваться</Text>
                 </div>
+                {isSeeOtp && (
+                  <div className="desc">
+                    <Text body5>
+                      Мы отправили СМС-сообщение с кодом подтверждения на номер{" "}
+                      {phoneUser.formatedNumber.split(" ")}
+                    </Text>
+                  </div>
+                )}
                 <div className="input">
-                  <Input
-                    type="tel"
-                    name="phone"
-                    placeholder="(000) 000-00-00"
-                    postfix="+7"
-                  />
+                  {!isSeeOtp && (
+                    <Input
+                      type="tel"
+                      name="phone"
+                      placeholder="(000) 000-00-00"
+                      postfix="+7"
+                      id="recaptcha-container"
+                    />
+                  )}
+                  {isSeeOtp && (
+                    <OtpInput length={6} onChange={handleOTPChange} />
+                  )}
                 </div>
                 <div className="button">
-                  <Button type="primary" block>
-                    <Text body3>Войти </Text>
-                  </Button>
+                  {!isSeeOtp && (
+                    <Button
+                      type="primary"
+                      block
+                      id="sign-in-button"
+                      onClick={onSignInSubmit}
+                    >
+                      <Text body3>Войти </Text>
+                    </Button>
+                  )}
+                  {isSeeOtp && (
+                    <Button
+                      type="primary"
+                      block
+                      id="sign-in-button"
+                      onClick={onOTPVerify}
+                    >
+                      <Text body3>Подтвердить вход </Text>
+                    </Button>
+                  )}
                 </div>
               </form>
               <div className="checkbox-desc">

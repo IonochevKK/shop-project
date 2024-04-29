@@ -1,0 +1,17 @@
+@import "../../../globalStyles/color.scss";
+.otpInput {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  .itemOtp {
+    max-width: 60px;
+    input {
+      font-size: 24px;
+      text-align: center;
+      border: none;
+      border-bottom: 1px solid $gray3;
+      outline: none;
+    }
+  }
+}

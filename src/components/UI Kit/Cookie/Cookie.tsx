@@ -4,13 +4,16 @@ import Button from "../Button/Button";
 import Text from "../Text/Text";
 import CloseSvg from "../../../../public/svg/close.svg?react";
 import { useResizeWidth } from "../../../hooks/useResizeWidth";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
+import { saveSessionToLocalStorage } from "../../../utils/saveSessionToLocalStorage";
 
 interface CookieProps {
   onClose?: () => void;
 }
 const Cookie: React.FC<CookieProps> = ({ onClose }) => {
   const [acceptedCookies, setAcceptedCookies] = useState<boolean>(true);
-
+  const userSession = useSelector((state: RootState) => state.UserSession);
   const sizeScreenTablet = useResizeWidth(1024);
 
   useEffect(() => {
@@ -21,12 +24,14 @@ const Cookie: React.FC<CookieProps> = ({ onClose }) => {
       setAcceptedCookies(false);
     }
   }, []);
+
   const handleAccept = () => {
     setAcceptedCookies(true);
     localStorage.setItem("acceptedCookies", "true");
+    saveSessionToLocalStorage(userSession);
     if (onClose) onClose();
   };
-  localStorage.clear(); // для тестов
+  // localStorage.clear(); // для тестов
   return (
     <div className={`cookie ${!acceptedCookies ? "show" : ""}`}>
       <div className="cookie-container">

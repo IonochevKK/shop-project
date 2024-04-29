@@ -22,6 +22,7 @@ export interface ButtonProps {
   ) => void;
   children?: React.ReactNode;
   padding?: string;
+  id?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -33,6 +34,7 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   children,
   padding,
+  id,
 }) => {
   const buttonClasses = classNames(
     "button",
@@ -53,6 +55,7 @@ const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       onClick={onClick}
       style={{ ...PaddingButtonStyle }}
+      id={id}
     >
       {type === "icon_left" && (
         <span className={iconContainerClasses}>{icon}</span>

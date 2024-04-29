@@ -24,7 +24,7 @@ const NavBar: React.FC = () => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const [isOpenLogin, setIsOpenLogin] = useState<boolean>(false);
 
-  const isLogin = useSelector((state: RootState) => state.UserSession.user);
+  const isLogin = useSelector((state: RootState) => state.UserSession.id);
 
   const [inputValue, setInputValue] = useState<string>("");
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);

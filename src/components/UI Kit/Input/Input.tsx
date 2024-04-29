@@ -15,6 +15,7 @@ interface InputProps {
   err?: boolean | string;
   name?: string;
   onChange?: (value: string) => void;
+  id?: string;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -27,6 +28,7 @@ const Input: React.FC<InputProps> = ({
   err,
   name,
   onChange,
+  id,
 }) => {
   const [phoneValue, setPhoneValue] = useState("");
   const [errPhone, setErrPhone] = useState<boolean>(false);
@@ -45,7 +47,6 @@ const Input: React.FC<InputProps> = ({
     const value = event.target.value;
     if (type === "tel") {
       setErrPhone(false);
-      console.log(phoneValue.length);
       if (value.match(/[\d() -]/g) && phoneValue.length < 15) {
         const formattedValue = formatPhoneNumber(value);
         console.log();
@@ -90,7 +91,7 @@ const Input: React.FC<InputProps> = ({
               className={ClassNameInput}
               type={type}
               disabled={disabled}
-              id={type}
+              id={id}
               name={name}
               value={phoneValue}
             />
@@ -103,7 +104,7 @@ const Input: React.FC<InputProps> = ({
           {err ||
             (errPhone && (
               <label className="label-err" data-testid="err">
-                {err || errPhone === true ? "Длина номера 11 цифр" : `${err}`}
+                {err || errPhone === true ? "Длина номера 11 символов" : `${err}`}
               </label>
             ))}
         </div>
