@@ -11,11 +11,12 @@ import VkSvg from "../../../public/svg/vk.svg?react";
 import YouTubeSvg from "../../../public/svg/youtube.svg?react";
 import SvgIcon from "../UI Kit/SvgIcon/SvgIcon";
 import { useResizeWidth } from "../../hooks/useResizeWidth";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { store } from "../../store/store";
 import Modal from "../UI Kit/Modal/Modal";
 import Form from "../UI Kit/Form/Form";
 import LoginOrRegister from "../LoginOrRegister/LoginOrRegister";
+import { updateUserSession } from "../../store/userSession-slise";
 
 export type RootState = ReturnType<typeof store.getState>;
 
@@ -40,6 +41,7 @@ const NavBar: React.FC = () => {
   const sizeScreenMobile = useResizeWidth(600);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -92,6 +94,11 @@ const NavBar: React.FC = () => {
 
   const toggleMenu = () => {
     setIsOpenMenu(!isOpenMenu);
+  };
+  const onHandleClickLogout = () => {
+    console.log(1)
+    localStorage.removeItem("userSession");
+    dispatch(updateUserSession({ id: null, email: null, name: null }));
   };
 
   return (
@@ -153,7 +160,7 @@ const NavBar: React.FC = () => {
                     <SvgIcon type="user" />
                     <SvgIcon type="basket" countGoods={99} />
                     {!sizeScreenTablet && (
-                      <Button type="secondary_2">
+                      <Button type="secondary_2" onClick={onHandleClickLogout}>
                         <Text body5>Выйти из личного кабинета</Text>
                       </Button>
                     )}

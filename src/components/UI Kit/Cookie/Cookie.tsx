@@ -1,36 +1,25 @@
-import React, { useEffect, useState } from "react";
 import "./cookie.scss";
 import Button from "../Button/Button";
 import Text from "../Text/Text";
 import CloseSvg from "../../../../public/svg/close.svg?react";
 import { useResizeWidth } from "../../../hooks/useResizeWidth";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../store/store";
-import { saveSessionToLocalStorage } from "../../../utils/saveSessionToLocalStorage";
+import { useDispatch } from "react-redux";
+import { ChangeCookies } from "../../../store/cookies-slise";
 
 interface CookieProps {
+  acceptedCookies: boolean;
   onClose?: () => void;
 }
-const Cookie: React.FC<CookieProps> = ({ onClose }) => {
-  const [acceptedCookies, setAcceptedCookies] = useState<boolean>(true);
-  const userSession = useSelector((state: RootState) => state.UserSession);
+const Cookie: React.FC<CookieProps> = ({ onClose, acceptedCookies }) => {
   const sizeScreenTablet = useResizeWidth(1024);
-
-  useEffect(() => {
-    const hasAcceptedCookies = localStorage.getItem("acceptedCookies");
-    if (hasAcceptedCookies === "true") {
-      setAcceptedCookies(true);
-    } else {
-      setAcceptedCookies(false);
-    }
-  }, []);
+  const dispatch = useDispatch();
 
   const handleAccept = () => {
-    setAcceptedCookies(true);
+    dispatch(ChangeCookies(true));
     localStorage.setItem("acceptedCookies", "true");
-    saveSessionToLocalStorage(userSession);
     if (onClose) onClose();
   };
+
   // localStorage.clear(); // для тестов
   return (
     <div className={`cookie ${!acceptedCookies ? "show" : ""}`}>

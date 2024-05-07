@@ -8,12 +8,13 @@ import VisaCardSvg from "../../../public/svg/visa.svg?react";
 import MirCardSvg from "../../../public/svg/mir.svg?react";
 import SbpCardSvg from "../../../public/svg/sbp.svg?react";
 import { useResizeWidth } from "../../hooks/useResizeWidth";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { store } from "../../store/store";
 import Modal from "../UI Kit/Modal/Modal";
 import Form from "../UI Kit/Form/Form";
 import { useCallback, useState } from "react";
 import LoginOrRegister from "../LoginOrRegister/LoginOrRegister";
+import { updateUserSession } from "../../store/userSession-slise";
 export type RootState = ReturnType<typeof store.getState>;
 const Footer = () => {
   const isLogin = useSelector((state: RootState) => state.UserSession.id);
@@ -28,6 +29,13 @@ const Footer = () => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const openModal = useCallback(() => setIsOpenModal(true), []);
   const closeModal = useCallback(() => setIsOpenModal(false), []);
+
+  const dispatch = useDispatch();
+
+  const onHandleClickLogout = () => {
+    localStorage.removeItem("userSession");
+    dispatch(updateUserSession({ id: null, email: null, name: null }));
+  };
 
   return (
     <footer>
@@ -79,7 +87,7 @@ const Footer = () => {
                 </Button>
               )}
               {isLogin && (
-                <Button type="secondary_2">
+                <Button type="secondary_2" onClick={onHandleClickLogout}>
                   <Text body6>Выйти из личного кабинета</Text>
                 </Button>
               )}

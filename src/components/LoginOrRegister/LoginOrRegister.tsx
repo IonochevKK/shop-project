@@ -10,9 +10,14 @@ import { getPhoneNumber } from "../../utils/getPhoneNumberInInput";
 import { signInWithPhoneNumber, RecaptchaVerifier } from "firebase/auth";
 import { auth } from "../../libs/firebase";
 import OtpInput from "../UI Kit/OtpInput/OtpInput";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateUserSession } from "../../store/userSession-slise";
-import { getSessionFromToLocalStorage } from "../../utils/getSessionFromToLocalStorage";
+import {
+  getSessionFromToLocalStorage,
+  GetSessionInLocalStorage,
+} from "../../utils/GetSessionInLocalStorage";
+import { saveSessionToLocalStorage } from "../../utils/saveSessionToLocalStorage";
+import { RootState } from "../../store/store";
 declare global {
   interface Window {
     recaptchaVerifier: RecaptchaVerifier;
@@ -34,6 +39,8 @@ const LoginOrRegister: React.FC<LoginOrRegisterProps> = ({ closeLogin }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [isSeeOtp, setIsSeeOtp] = useState<boolean>(false);
   const [otp, setOTP] = useState("");
+  const userSession = useSelector((state: RootState) => state.UserSession);
+
   const root = document.getElementById("root") as Element;
 
   const handleSumbmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -66,6 +73,13 @@ const LoginOrRegister: React.FC<LoginOrRegisterProps> = ({ closeLogin }) => {
             // createdAT: res.user.metadata,
           })
         );
+        // saveSessionToLocalStorage(userSession);
+        // const localStorageUserSession = GetSessionInLocalStorage();
+        // if (localStorageUserSession) {
+        //   console.log("LoadSession");
+        //   dispatch(updateUserSession(localStorageUserSession));
+        // }
+        console.log(userSession);
         closeLogin();
       })
       .catch((err) => {
