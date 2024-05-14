@@ -2,14 +2,14 @@ import React, { useRef, useState } from "react";
 import "./otpInput.scss";
 
 interface OTPInputProps {
+  err?: string | boolean;
   length: number;
   onChange: (otp: string) => void;
 }
 
-const OtpInput: React.FC<OTPInputProps> = ({ length, onChange }) => {
+const OtpInput: React.FC<OTPInputProps> = ({ length, onChange, err }) => {
   const [otp, setOTP] = useState<string[]>(new Array(length).fill(""));
   const inputs = useRef<HTMLInputElement[]>(Array.from({ length }));
-  console.log(otp);
   const handleChange = (
     index: number,
     event: React.ChangeEvent<HTMLInputElement>
@@ -37,7 +37,7 @@ const OtpInput: React.FC<OTPInputProps> = ({ length, onChange }) => {
   return (
     <div className="otpInput">
       {otp.map((digit, index) => (
-        <div className="itemOtp" key={index}>
+        <div className={err ? "itemOtp error" : "itemOtp"} key={index}>
           <input
             type="text"
             maxLength={1}
@@ -48,6 +48,7 @@ const OtpInput: React.FC<OTPInputProps> = ({ length, onChange }) => {
           />
         </div>
       ))}
+      <div className="err">{err && "Неверный код"}</div>
     </div>
   );
 };

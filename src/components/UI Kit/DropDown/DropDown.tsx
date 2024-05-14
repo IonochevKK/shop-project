@@ -31,7 +31,9 @@ const DropDown: React.FC<DropDownProps> = ({ options }) => {
         data-testid="dropDown"
       >
         <div className="selectedOption">
-          {selectedOtion ? selectedOtion.label : "Всё"}
+          <div className="selectText">
+            {selectedOtion ? selectedOtion.label : "Всё"}
+          </div>
           <span>
             {isOpen ? (
               <DropDownArrowUp

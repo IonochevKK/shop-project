@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./loginOrRegister.scss";
 import { createPortal } from "react-dom";
 import Text from "../UI Kit/Text/Text";
@@ -12,11 +12,7 @@ import { auth } from "../../libs/firebase";
 import OtpInput from "../UI Kit/OtpInput/OtpInput";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserSession } from "../../store/userSession-slise";
-import {
-  getSessionFromToLocalStorage,
-  GetSessionInLocalStorage,
-} from "../../utils/GetSessionInLocalStorage";
-import { saveSessionToLocalStorage } from "../../utils/saveSessionToLocalStorage";
+
 import { RootState } from "../../store/store";
 declare global {
   interface Window {
@@ -36,13 +32,13 @@ const LoginOrRegister: React.FC<LoginOrRegisterProps> = ({ closeLogin }) => {
   const [phoneUser, setPhoneUser] = useState<PhoneNumber>({
     formatedNumber: "",
   });
+
   const [loading, setLoading] = useState<boolean>(false);
   const [isSeeOtp, setIsSeeOtp] = useState<boolean>(false);
   const [otp, setOTP] = useState("");
-  const userSession = useSelector((state: RootState) => state.UserSession);
 
   const root = document.getElementById("root") as Element;
-
+  console.log(loading);
   const handleSumbmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const phone = await getPhoneNumber(e);
@@ -73,13 +69,6 @@ const LoginOrRegister: React.FC<LoginOrRegisterProps> = ({ closeLogin }) => {
             // createdAT: res.user.metadata,
           })
         );
-        // saveSessionToLocalStorage(userSession);
-        // const localStorageUserSession = GetSessionInLocalStorage();
-        // if (localStorageUserSession) {
-        //   console.log("LoadSession");
-        //   dispatch(updateUserSession(localStorageUserSession));
-        // }
-        console.log(userSession);
         closeLogin();
       })
       .catch((err) => {
@@ -125,8 +114,8 @@ const LoginOrRegister: React.FC<LoginOrRegisterProps> = ({ closeLogin }) => {
                 {isSeeOtp && (
                   <div className="desc">
                     <Text body5>
-                      Мы отправили СМС-сообщение с кодом подтверждения на номер{" "}
-                      {phoneUser.formatedNumber.split(" ")}
+                      Мы отправили СМС-сообщение с кодом подтверждения на номер
+                      <strong>{phoneUser.formatedNumber.split(" ")}</strong>
                     </Text>
                   </div>
                 )}
@@ -152,7 +141,7 @@ const LoginOrRegister: React.FC<LoginOrRegisterProps> = ({ closeLogin }) => {
                       id="sign-in-button"
                       onClick={onSignInSubmit}
                     >
-                      <Text body3>Войти </Text>
+                      <Text body3>{!loading ? `Войти` : `Загрузка...`} </Text>
                     </Button>
                   )}
                   {isSeeOtp && (

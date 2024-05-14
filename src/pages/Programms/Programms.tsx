@@ -1,16 +1,10 @@
 import React from "react";
+import "./programms.scss";
 import Layout from "../../components/Layout/Layout";
-import "./home.scss";
-import Spa from "../../components/Spa/Spa";
-import FilterProgram from "../../components/FilterProgram/FilterProgram";
 import PopularProgram from "../../components/PopularProgram/PopularProgram";
+import FilterProgram from "../../components/FilterProgram/FilterProgram";
 import { CardProgramProps } from "../../components/CardProgram/CardProgram";
-import SliderBlock from "../../components/SliderBlock/SliderBlock";
-import BlockPosts from "../../components/BlockPosts/BlockPosts";
-import DocumentsBlock from "../../components/DocumentsBlock/DocumentsBlock";
-import BlockContact from "../../components/BlockContact/BlockContact";
-
-const Home: React.FC = () => {
+const Programms = () => {
   const cards: CardProgramProps[] = [
     {
       id: 1,
@@ -64,18 +58,13 @@ const Home: React.FC = () => {
     },
   ];
   return (
-    <div className="home">
+    <div className="programms">
       <Layout>
-        <Spa />
-        <FilterProgram />
+        <FilterProgram breadCrumbs />
         <PopularProgram cards={cards} />
-        <SliderBlock />
-        <BlockPosts />
-        <DocumentsBlock />
-        <BlockContact />
       </Layout>
     </div>
   );
 };
 
-export default Home;
+export default Programms;

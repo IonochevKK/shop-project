@@ -1,14 +1,14 @@
 import React, { useCallback, useEffect, useState } from "react";
-import Footer from "../../Footer/Footer";
-import NavBar from "../../NavBar/NavBar";
+import Footer from "../Footer/Footer";
+import NavBar from "../NavBar/NavBar";
 import "./layout.scss";
-import Cookie from "../../UI Kit/Cookie/Cookie";
+import Cookie from "../UI Kit/Cookie/Cookie";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../store/store";
-import { ChangeCookies } from "../../../store/cookies-slise";
-import { saveSessionToLocalStorage } from "../../../utils/saveSessionToLocalStorage";
-import { GetSessionInLocalStorage } from "../../../utils/GetSessionInLocalStorage";
-import { updateUserSession } from "../../../store/userSession-slise";
+import { RootState } from "../../store/store";
+import { ChangeCookies } from "../../store/cookies-slise";
+import { saveSessionToLocalStorage } from "../../utils/saveSessionToLocalStorage";
+import { GetSessionInLocalStorage } from "../../utils/GetSessionInLocalStorage";
+import { updateUserSession } from "../../store/userSession-slise";
 
 interface LayoutProps {
   children?: React.ReactNode;
@@ -27,7 +27,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   useEffect(() => {
     dispatch(ChangeCookies(true));
     if (userSession.id) {
-      saveSessionToLocalStorage(userSession);
+      saveSessionToLocalStorage(userSession.id);
     }
     const localStorageUserSession = GetSessionInLocalStorage();
     if (localStorageUserSession) {

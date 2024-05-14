@@ -1,5 +1,5 @@
 import { InitialStateType } from "../store/userSession-slise";
 
-export const saveSessionToLocalStorage = (sessionData: InitialStateType) => {
-  localStorage.setItem("userSession", JSON.stringify(sessionData));
+export const saveSessionToLocalStorage = (id: string | null) => {
+  localStorage.setItem("userSession", JSON.stringify({ id: id }));
 };

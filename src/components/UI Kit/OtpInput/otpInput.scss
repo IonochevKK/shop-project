@@ -14,4 +14,14 @@
       outline: none;
     }
   }
+  .err {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red;
+  }
+  .error {
+    border-bottom: 1px solid red;
+  }
 }

@@ -3,7 +3,6 @@ import "./cardNews.scss";
 import Text from "../UI Kit/Text/Text";
 import Button from "../UI Kit/Button/Button";
 import { changeDataMouth } from "../../utils/getMounth";
-import { sliceWords } from "../../utils/sliceWords";
 export interface CardNewsList {
   title: string;
   desc: string;
@@ -11,7 +10,6 @@ export interface CardNewsList {
 }
 const CardNews: React.FC<CardNewsList> = ({ title, desc, createAt }) => {
   const data = changeDataMouth(createAt);
-  const sliceDesc = sliceWords(desc);
   return (
     <div className="cardNews">
       <div className="container">
@@ -19,7 +17,7 @@ const CardNews: React.FC<CardNewsList> = ({ title, desc, createAt }) => {
           <Text body2>{title}</Text>
         </div>
         <div className="deck">
-          <Text body5>{sliceDesc}</Text>
+          <Text body5>{desc}</Text>
         </div>
         <div className="info">
           <div className="date">

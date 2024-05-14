@@ -5,26 +5,35 @@ import "./filterProgram.scss";
 import DropDown, { Option } from "../UI Kit/DropDown/DropDown";
 import Button from "../UI Kit/Button/Button";
 import { useResizeWidth } from "../../hooks/useResizeWidth";
-const FilterProgram: React.FC = () => {
+import BreadCrubms from "../UI Kit/BreadCrubms/BreadCrubms";
+import { useEffect, useState } from "react";
+import {
+  CountHours,
+  KursDropDown,
+  KursView,
+  ViewSpecial,
+} from "../../data/dataProgramm";
+interface FilterProgramProps {
+  breadCrumbs?: boolean;
+}
+const FilterProgram: React.FC<FilterProgramProps> = ({ breadCrumbs }) => {
   const sizeScreenTablet = useResizeWidth(1024);
   const sizeScreenMobile = useResizeWidth(550);
+  const [loading, setLoading] = useState(false);
+
+  const [viewProgramms, setviewProgramms] = useState<Option[]>([]);
+  const [viewSpecialty, setviewSpecialty] = useState<Option[]>([]);
+  const [viewCountHours, setviewCountHours] = useState<Option[]>([]);
+
+  useEffect(() => {
+    setLoading(true);
+    setviewProgramms(KursView);
+    setviewSpecialty(ViewSpecial);
+    setviewCountHours(CountHours);
+    setLoading(false);
+  }, []);
   // const [selectedOtion, setSelectedOtion] = useState<Option | null>(null);
   // const [isOpen, setIsOpen] = useState(false);
-
-  const options: Option[] = [
-    {
-      value: "option1",
-      label: "Option 1",
-    },
-    {
-      value: "option1",
-      label: "Option 1",
-    },
-    {
-      value: "option1",
-      label: "Option 1",
-    },
-  ];
 
   // const handleToggleDropDown = () => {
   //   setIsOpen(!isOpen);
@@ -34,9 +43,12 @@ const FilterProgram: React.FC = () => {
   //   setSelectedOtion(option);
   //   setIsOpen(false);
   // };
+
+  const elements = ["Главная", "1232"];
   return (
     <div className="filter-program">
       <div className="filter-container">
+        {breadCrumbs && <BreadCrubms links={elements} />}
         <div className="title">
           <Title type="flex">
             <Text h2>Программы</Text>
@@ -51,19 +63,19 @@ const FilterProgram: React.FC = () => {
                   <span>
                     <Text body3>Вид программы:</Text>
                   </span>
-                  <DropDown options={options} />
+                  <DropDown options={viewProgramms} />
                 </div>
                 <div className="item">
                   <span>
                     <Text body3>Специальность:</Text>
                   </span>
-                  <DropDown options={options} />
+                  <DropDown options={viewSpecialty} />
                 </div>
                 <div className="item">
                   <span>
                     <Text body3>Количество часов:</Text>
                   </span>
-                  <DropDown options={options} />
+                  <DropDown options={viewCountHours} />
                 </div>
               </>
             )}
