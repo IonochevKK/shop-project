@@ -5,16 +5,23 @@ import Button from "../Button/Button";
 import { useResizeWidth } from "../../../hooks/useResizeWidth";
 import "./form.scss";
 
-type FormType = "text" | "noText";
+type FormType = "text" | "noText" | "phone/name";
 
 interface FormProps {
   type: FormType;
   title: string | React.ReactNode;
   desc?: string | React.ReactNode;
   blockButton?: boolean;
+  style?: React.CSSProperties;
 }
 
-const Form: React.FC<FormProps> = ({ type, blockButton, title, desc }) => {
+const Form: React.FC<FormProps> = ({
+  type,
+  blockButton,
+  title,
+  desc,
+  style,
+}) => {
   const [dataInput, setDataInput] = useState({});
   const sizeScreenMobile = useResizeWidth(550);
 
@@ -42,7 +49,7 @@ const Form: React.FC<FormProps> = ({ type, blockButton, title, desc }) => {
 
   return (
     <>
-      <div className="form">
+      <div className="form" style={style}>
         <div className="title">{title}</div>
         <div className="desc">{desc}</div>
         <form onSubmit={handleSumbmit}>
@@ -54,15 +61,20 @@ const Form: React.FC<FormProps> = ({ type, blockButton, title, desc }) => {
             placeholder="(000) 000-00-00"
             postfix="+7"
           />
-          <Input type="email" name="email" block placeholder="Email" />
-          {type === "text" && (
-            <Input
-              type="bigText"
-              name="question"
-              block
-              placeholder="Ваш вопрос"
-            />
+          {type !== "phone/name" && (
+            <>
+              <Input type="email" name="email" block placeholder="Email" />
+              {type === "text" && (
+                <Input
+                  type="bigText"
+                  name="question"
+                  block
+                  placeholder="Ваш вопрос"
+                />
+              )}
+            </>
           )}
+
           <div className="button">
             <Button type="primary" block={sizeScreenMobile || blockButton}>
               Отправить

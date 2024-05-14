@@ -87,13 +87,13 @@ const FilterProgram: React.FC<FilterProgramProps> = ({ breadCrumbs }) => {
                     <span>
                       <Text body3>Вид программы:</Text>
                     </span>
-                    <DropDown options={options} />
+                    <DropDown options={viewProgramms} />
                   </div>
                   <div className="item">
                     <span>
                       <Text body3>Специальность:</Text>
                     </span>
-                    <DropDown options={options} />
+                    <DropDown options={viewSpecialty} />
                   </div>
                 </div>
                 <div className="items-bottom">
@@ -101,7 +101,7 @@ const FilterProgram: React.FC<FilterProgramProps> = ({ breadCrumbs }) => {
                     <span>
                       <Text body3>Количество часов:</Text>
                     </span>
-                    <DropDown options={options} />
+                    <DropDown options={viewCountHours} />
                   </div>
                   <div className="item ite">
                     <div className="button">
@@ -119,19 +119,19 @@ const FilterProgram: React.FC<FilterProgramProps> = ({ breadCrumbs }) => {
                   <span>
                     <Text body3>Вид программы:</Text>
                   </span>
-                  <DropDown options={options} />
+                  <DropDown options={viewProgramms} />
                 </div>
                 <div className="item">
                   <span>
                     <Text body3>Специальность:</Text>
                   </span>
-                  <DropDown options={options} />
+                  <DropDown options={viewSpecialty} />
                 </div>
                 <div className="item">
                   <span>
                     <Text body3>Количество часов:</Text>
                   </span>
-                  <DropDown options={options} />
+                  <DropDown options={viewCountHours} />
                 </div>
               </>
             )}

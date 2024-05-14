@@ -5,25 +5,39 @@
   .container {
     max-width: 1400px;
     margin: 0 auto;
-    .title {
-    }
+    position: relative;
     .container-form {
       padding: 30px 0px;
-      width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
       .blockForm {
-        padding: 20px;
+        width: 100%;
       }
       .map {
+        width: 100%;
         display: flex;
-        justify-content: flex-end;
         img {
           width: 100%;
           object-fit: contain;
           @include tablet {
             width: 100%;
+          }
+        }
+        .svg-logo {
+          position: absolute;
+          right: 10%;
+          top: 20px;
+          z-index: 0;
+          @include tablet {
+            right: -160px;
+            top: 27%;
+          }
+          @include mobile {
+            top: auto;
+            bottom: -13%;
+            right: -72%;
+            z-index: -1;
           }
         }
       }

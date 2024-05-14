@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import React from "react";
 import "./button.scss";
+import { Link } from "react-router-dom";
 
 type TypeButton =
   | "primary"
@@ -60,6 +61,7 @@ const Button: React.FC<ButtonProps> = ({
       {type === "icon_left" && (
         <span className={iconContainerClasses}>{icon}</span>
       )}
+
       {children}
       {type === "icon_right" && (
         <span className={iconContainerClasses}>{icon}</span>

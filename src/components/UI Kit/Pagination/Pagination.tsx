@@ -2,6 +2,9 @@ import classNames from "classnames";
 import React from "react";
 import "./pagination.scss";
 import { getVisiblePages } from "../../../utils/getVisiblePages";
+import ButtonRightSvg from "../../../../public/svg/pagination_button_right.svg?react";
+import ButtonLeftSvg from "../../../../public/svg/pagination_button_left.svg?react";
+import Text from "../Text/Text";
 interface PaginationProps {
   pages: number[];
   currentPage: number;
@@ -24,13 +27,12 @@ const Pagination: React.FC<PaginationProps> = ({
   const renderPageItem = (page: number) => (
     <li
       key={page}
-      className={classNames("page-item", { active: currentPage === page })}
+      className={classNames("page-item", {
+        activePagination: currentPage === page,
+      })}
     >
-      <button
-        className="page-link"
-        onClick={() => onPageChange(page)}
-      >
-        {page}
+      <button className="page-link" onClick={() => onPageChange(page)}>
+        <Text body3>{page}</Text>
       </button>
     </li>
   );
@@ -38,23 +40,23 @@ const Pagination: React.FC<PaginationProps> = ({
   return (
     <div>
       <ul className="pagination">
-        <li className="page-item">
+        <li className="page-item arrow">
           <button
-            className="page-link"
+            className="page-link "
             disabled={currentPage === 1}
             onClick={() => onPageChange(currentPage - 1)}
           >
-            &laquo;
+            <ButtonLeftSvg />
           </button>
         </li>
         {visiblePages.map(renderPageItem)}
-        <li className="page-item">
+        <li className="page-item arrow">
           <button
-            className="page-link"
+            className="page-link "
             disabled={currentPage === totalPages}
             onClick={() => onPageChange(currentPage + 1)}
           >
-            &raquo;
+            <ButtonRightSvg />
           </button>
         </li>
       </ul>

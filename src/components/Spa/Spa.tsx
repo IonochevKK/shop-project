@@ -14,7 +14,7 @@ const Spa: React.FC = () => {
 
   const openModal = useCallback(() => setIsOpen(true), []);
   const closeModal = useCallback(() => setIsOpen(false), []);
-  
+
   return (
     <div className="spa">
       {isOpen && (

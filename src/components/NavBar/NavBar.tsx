@@ -17,6 +17,7 @@ import Modal from "../UI Kit/Modal/Modal";
 import Form from "../UI Kit/Form/Form";
 import LoginOrRegister from "../LoginOrRegister/LoginOrRegister";
 import { updateUserSession } from "../../store/userSession-slise";
+import { Link } from "react-router-dom";
 
 export type RootState = ReturnType<typeof store.getState>;
 
@@ -96,7 +97,7 @@ const NavBar: React.FC = () => {
     setIsOpenMenu(!isOpenMenu);
   };
   const onHandleClickLogout = () => {
-    console.log(1)
+    console.log(1);
     localStorage.removeItem("userSession");
     dispatch(updateUserSession({ id: null, email: null, name: null }));
   };
@@ -217,7 +218,9 @@ const NavBar: React.FC = () => {
                   )}
                   <div className="pages">
                     <Button type="link">
-                      <Text body5>Программы</Text>
+                      <Link to="/programms">
+                        <Text body5>Программы</Text>
+                      </Link>
                     </Button>
                     <Button type="link">
                       <Text body5>Сведения об организации</Text>
@@ -260,7 +263,9 @@ const NavBar: React.FC = () => {
               )}
               <div className="pages">
                 <Button type="link">
-                  <Text body5>Программы</Text>
+                  <Link to="/programms" >
+                    <Text body5>Программы</Text>
+                  </Link>
                 </Button>
                 <Button type="link">
                   <Text body5>Сведения об организации</Text>

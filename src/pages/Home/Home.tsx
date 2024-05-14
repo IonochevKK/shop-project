@@ -68,11 +68,11 @@ const Home: React.FC = () => {
       <Layout>
         <Spa />
         <FilterProgram />
-        <PopularProgram cards={cards} />
+        <PopularProgram cards={cards} title cardsLength={6} />
         <SliderBlock />
         <BlockPosts />
         <DocumentsBlock />
-        <BlockContact />
+        <BlockContact title />
       </Layout>
     </div>
   );
