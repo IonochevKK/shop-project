@@ -2,155 +2,196 @@ import Title from "../UI Kit/Titles/TItle";
 import Text from "../UI Kit/Text/Text";
 import Divider from "../UI Kit/Divider/Divider";
 import "./filterProgram.scss";
-import DropDown, { Option } from "../UI Kit/DropDown/DropDown";
+import DropDown from "../UI Kit/DropDown/DropDown";
 import Button from "../UI Kit/Button/Button";
 import { useResizeWidth } from "../../hooks/useResizeWidth";
 import BreadCrubms from "../UI Kit/BreadCrubms/BreadCrubms";
+import useGetDropDownData from "../../hooks/useGetDropDownData";
+import { useDispatch } from "react-redux";
+import { filterCards } from "../../store/cards-slise";
+import { Link } from "react-router-dom";
+import BreadCrumbItem, {
+  BreadCrumbItemProps,
+} from "../UI Kit/BreadCrubms/BreadCrumbItem/BreadCrumbItem";
 import { useEffect, useState } from "react";
-import {
-  CountHours,
-  KursDropDown,
-  KursView,
-  ViewSpecial,
-} from "../../data/dataProgramm";
+import { getItemsBreadCrumbs } from "../../utils/getItemsBreadCrumbs";
 interface FilterProgramProps {
-  breadCrumbs?: boolean;
+  isbreadCrumbs?: boolean;
+  link?: boolean;
 }
-const FilterProgram: React.FC<FilterProgramProps> = ({ breadCrumbs }) => {
+
+const FilterProgram: React.FC<FilterProgramProps> = ({
+  isbreadCrumbs,
+  link,
+}) => {
+  const dispatch = useDispatch();
   const sizeScreenTablet = useResizeWidth(1024);
   const sizeScreenMobile = useResizeWidth(550);
-  const [loading, setLoading] = useState(false);
 
-  const [viewProgramms, setviewProgramms] = useState<Option[]>([]);
-  const [viewSpecialty, setviewSpecialty] = useState<Option[]>([]);
-  const [viewCountHours, setviewCountHours] = useState<Option[]>([]);
+  const { viewProgramms, viewSpecialty, viewCountHours } = useGetDropDownData();
 
+  const [listbreadCrumbs, setListBreadCrumbs] = useState<BreadCrumbItemProps[]>(
+    []
+  );
   useEffect(() => {
-    setLoading(true);
-    setviewProgramms(KursView);
-    setviewSpecialty(ViewSpecial);
-    setviewCountHours(CountHours);
-    setLoading(false);
+    setListBreadCrumbs(getItemsBreadCrumbs());
   }, []);
-  // const [selectedOtion, setSelectedOtion] = useState<Option | null>(null);
-  // const [isOpen, setIsOpen] = useState(false);
+  const handleSumbmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const { programms, special, time } = Object.fromEntries(formData) as {
+      programms: string;
+      special: string;
+      time: string;
+    };
+    console.log(programms, special, time);
+    dispatch(filterCards({ programms, special, time }));
+  };
 
-  // const handleToggleDropDown = () => {
-  //   setIsOpen(!isOpen);
-  // };
-
-  // const handleSelectOption = (option: Option) => {
-  //   setSelectedOtion(option);
-  //   setIsOpen(false);
-  // };
-
-  const elements = ["Главная", "1232"];
   return (
     <div className="filter-program">
       <div className="filter-container">
-        {breadCrumbs && <BreadCrubms links={elements} />}
+        {isbreadCrumbs && (
+          <BreadCrubms>
+            {listbreadCrumbs?.map((item, index) => (
+              <BreadCrumbItem
+                href={item.href}
+                text={`${item.text} /`}
+                key={index}
+              />
+            ))}
+          </BreadCrubms>
+        )}
         <div className="title">
           <Title type="flex">
             <Text h2>Программы</Text>
             {!sizeScreenMobile && <Divider type="blue" />}
           </Title>
         </div>
-        <div className="filter-components">
-          <div className="container-filters">
-            {!sizeScreenTablet && (
-              <>
-                <div className="item">
-                  <span>
-                    <Text body3>Вид программы:</Text>
-                  </span>
-                  <DropDown options={viewProgramms} />
-                </div>
-                <div className="item">
-                  <span>
-                    <Text body3>Специальность:</Text>
-                  </span>
-                  <DropDown options={viewSpecialty} />
-                </div>
-                <div className="item">
-                  <span>
-                    <Text body3>Количество часов:</Text>
-                  </span>
-                  <DropDown options={viewCountHours} />
-                </div>
-              </>
-            )}
-
-            {sizeScreenTablet && !sizeScreenMobile && (
-              <>
-                <div className="items-top">
+        <form onSubmit={handleSumbmit}>
+          <div className="filter-components">
+            <div className="container-filters">
+              {!sizeScreenTablet && (
+                <>
                   <div className="item">
                     <span>
                       <Text body3>Вид программы:</Text>
                     </span>
-                    <DropDown options={viewProgramms} />
+                    <DropDown options={viewProgramms} name="programms" />
                   </div>
                   <div className="item">
                     <span>
                       <Text body3>Специальность:</Text>
                     </span>
-                    <DropDown options={viewSpecialty} />
+                    <DropDown options={viewSpecialty} name="special" />
                   </div>
-                </div>
-                <div className="items-bottom">
                   <div className="item">
                     <span>
                       <Text body3>Количество часов:</Text>
                     </span>
-                    <DropDown options={viewCountHours} />
+                    <DropDown options={viewCountHours} name="time" />
                   </div>
-                  <div className="item ite">
-                    <div className="button">
+                </>
+              )}
+
+              {sizeScreenTablet && !sizeScreenMobile && (
+                <>
+                  <div className="items-top">
+                    <div className="item">
+                      <span>
+                        <Text body3>Вид программы:</Text>
+                      </span>
+                      <DropDown options={viewProgramms} name="programms" />
+                    </div>
+                    <div className="item">
+                      <span>
+                        <Text body3>Специальность:</Text>
+                      </span>
+                      <DropDown options={viewSpecialty} name="special" />
+                    </div>
+                  </div>
+                  <div className="items-bottom">
+                    <div className="item">
+                      <span>
+                        <Text body3>Количество часов:</Text>
+                      </span>
+                      <DropDown options={viewCountHours} name="time" />
+                    </div>
+                    <div className="item ite">
+                      <div className="button">
+                        <Button type="primary" block>
+                          Найти
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
+              {sizeScreenMobile && (
+                <>
+                  <div className="item">
+                    <span>
+                      <Text body3>Вид программы:</Text>
+                    </span>
+                    <DropDown options={viewProgramms} name="programms" />
+                  </div>
+                  <div className="item">
+                    <span>
+                      <Text body3>Специальность:</Text>
+                    </span>
+                    <DropDown options={viewSpecialty} name="special" />
+                  </div>
+                  <div className="item">
+                    <span>
+                      <Text body3>Количество часов:</Text>
+                    </span>
+                    <DropDown options={viewCountHours} name="time" />
+                  </div>
+                </>
+              )}
+            </div>
+            {!sizeScreenTablet && (
+              <>
+                {!link && (
+                  <div className="button">
+                    <Button type="primary" block>
+                      Найти
+                    </Button>
+                  </div>
+                )}
+                {link && (
+                  <div className="button">
+                    <Link to="/programms">
                       <Button type="primary" block>
                         Найти
                       </Button>
-                    </div>
+                    </Link>
                   </div>
-                </div>
+                )}
               </>
             )}
             {sizeScreenMobile && (
               <>
-                <div className="item">
-                  <span>
-                    <Text body3>Вид программы:</Text>
-                  </span>
-                  <DropDown options={viewProgramms} />
-                </div>
-                <div className="item">
-                  <span>
-                    <Text body3>Специальность:</Text>
-                  </span>
-                  <DropDown options={viewSpecialty} />
-                </div>
-                <div className="item">
-                  <span>
-                    <Text body3>Количество часов:</Text>
-                  </span>
-                  <DropDown options={viewCountHours} />
-                </div>
+                {!link && (
+                  <div className="button">
+                    <Button type="primary" block>
+                      Найти
+                    </Button>
+                  </div>
+                )}
+                {link && (
+                  <div className="button">
+                    <Link to="/programms">
+                      <Button type="primary" block>
+                        Найти
+                      </Button>
+                    </Link>
+                  </div>
+                )}
               </>
             )}
           </div>
-          {!sizeScreenTablet && (
-            <div className="button">
-              <Button type="primary" block>
-                Найти
-              </Button>
-            </div>
-          )}
-          {sizeScreenMobile && (
-            <div className="button">
-              <Button type="primary" block>
-                Найти
-              </Button>
-            </div>
-          )}
-        </div>
+        </form>
       </div>
     </div>
   );

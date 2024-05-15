@@ -118,13 +118,15 @@ const NavBar: React.FC = () => {
         <div className="navbar-top">
           <div className="logo">
             <span>
-              <Logo />
+              <Link to="/">
+                <Logo />
+              </Link>
             </span>
-            <span>
-              Приволжский центр <br />
-              профессионального <br />
-              обучения
-            </span>
+              <span>
+                Приволжский центр <br />
+                профессионального <br />
+                обучения
+              </span>
           </div>
           <div className="search-container" ref={dropdownRef}>
             {!sizeScreenMobile && (
@@ -263,7 +265,7 @@ const NavBar: React.FC = () => {
               )}
               <div className="pages">
                 <Button type="link">
-                  <Link to="/programms" >
+                  <Link to="/programms">
                     <Text body5>Программы</Text>
                   </Link>
                 </Button>

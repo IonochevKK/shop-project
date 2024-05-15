@@ -5,8 +5,8 @@ import "./spa.scss";
 import Button from "../UI Kit/Button/Button";
 import { useResizeWidth } from "../../hooks/useResizeWidth";
 import Form from "../UI Kit/Form/Form";
-import { createPortal } from "react-dom";
 import Modal from "../UI Kit/Modal/Modal";
+import { Link } from "react-router-dom";
 const Spa: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const sizeScreenTablet = useResizeWidth(1024);

@@ -49,12 +49,10 @@ const Input: React.FC<InputProps> = ({
       setErrPhone(false);
       if (value.match(/[\d() -]/g) && phoneValue.length < 15) {
         const formattedValue = formatPhoneNumber(value);
-        console.log();
         setPhoneValue(formattedValue);
         if (onChange) onChange(formattedValue);
       } else {
         setErrPhone(true);
-        console.log(1);
       }
     } else {
       setPhoneValue(value);

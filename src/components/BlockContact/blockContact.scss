@@ -1,6 +1,7 @@
 @import "../../globalStyles/breakPoints.scss";
 .blockContact {
   width: 100%;
+  overflow: hidden;
   padding: 50px 20px;
   .container {
     max-width: 1400px;

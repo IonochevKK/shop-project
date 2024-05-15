@@ -11,6 +11,7 @@ export interface CardProgramProps {
   priceSale?: number | string | React.ReactNode;
   HMOlabel?: boolean;
   labelText: string;
+  nameSpecial: string;
 }
 
 const CardProgram: React.FC<CardProgramProps> = ({

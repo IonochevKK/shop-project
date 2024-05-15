@@ -7,42 +7,60 @@ import Divider from "../UI Kit/Divider/Divider";
 import { useResizeWidth } from "../../hooks/useResizeWidth";
 import Pagination from "../UI Kit/Pagination/Pagination";
 import { countCardsOnPage } from "../../utils/countCardsOnPage";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+
 interface PopularProgramProps {
-  cards: CardProgramProps[];
   title?: boolean;
   cardsLength?: number;
   pagination?: boolean;
   backgorund?: React.CSSProperties;
+  disableFilter?: boolean;
+  sliceCards?: number;
 }
+
 const PopularProgram: React.FC<PopularProgramProps> = ({
-  cards,
   title,
   cardsLength,
   pagination,
   backgorund,
+  disableFilter,
+  sliceCards,
 }) => {
+  const cardsFilter = useSelector(
+    (state: RootState) => state.CardsStorage.filteredCards
+  );
+  const cardsAll = useSelector(
+    (state: RootState) => state.CardsStorage.allCards
+  );
   const sizeScreenMobile = useResizeWidth(550);
   const sizeScreenTablet = useResizeWidth(830);
 
-  const [cardsList, setCardsList] = useState(cards);
-
+  const [cardsList, setCardsList] = useState<CardProgramProps[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-
   const [pages, setPage] = useState<number[]>([]);
 
   useEffect(() => {
-    setPage(countCardsOnPage(cards));
+    const selectedCards = disableFilter ? cardsAll : cardsFilter;
+    setPage(countCardsOnPage(selectedCards));
+
     if (cardsLength) {
       setCardsList(
-        cards.slice((currentPage - 1) * cardsLength, currentPage * cardsLength)
+        selectedCards.slice(
+          (currentPage - 1) * cardsLength,
+          currentPage * cardsLength
+        )
       );
-      if (sizeScreenTablet) {
-        setCardsList(cards.slice(0, 3));
+      if (sliceCards) {
+        if (sizeScreenTablet) {
+          setCardsList(selectedCards.slice(0, sliceCards));
+        }
       }
     } else {
-      setCardsList(cards);
+      setCardsList(selectedCards);
     }
-  }, [sizeScreenTablet, currentPage, cards, cardsLength]);
+  }, [sizeScreenTablet, cardsAll, cardsFilter,currentPage]);
+
   return (
     <div className="popularProgram" style={backgorund}>
       <div className="popularProgram-container">
@@ -76,6 +94,7 @@ const PopularProgram: React.FC<PopularProgramProps> = ({
                 priceSale={card?.priceSale}
                 HMOlabel={card?.HMOlabel}
                 labelText={card.labelText}
+                nameSpecial={card.nameSpecial}
               />
             </div>
           ))}

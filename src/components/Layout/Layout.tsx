@@ -34,7 +34,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       dispatch(updateUserSession(localStorageUserSession));
     }
     console.log(userSession);
-  }, [dispatch]);
+  }, [dispatch, userSession]);
 
   return (
     <div className="layout">
