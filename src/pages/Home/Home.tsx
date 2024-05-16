@@ -17,7 +17,7 @@ const Home: React.FC = () => {
         <FilterProgram link />
         <PopularProgram title cardsLength={6} sliceCards={3} />
         <SliderBlock />
-        <BlockPosts />
+        <BlockPosts  />
         <DocumentsBlock />
         <BlockContact title />
       </Layout>

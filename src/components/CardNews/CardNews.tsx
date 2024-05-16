@@ -4,9 +4,12 @@ import Text from "../UI Kit/Text/Text";
 import Button from "../UI Kit/Button/Button";
 import { changeDataMouth } from "../../utils/getMounth";
 export interface CardNewsList {
+  id: number | string
   title: string;
   desc: string;
   createAt: Date;
+  img?: string;
+  text?: string;
 }
 const CardNews: React.FC<CardNewsList> = ({ title, desc, createAt }) => {
   const data = changeDataMouth(createAt);

@@ -15,6 +15,7 @@ import Form from "../UI Kit/Form/Form";
 import { useCallback, useState } from "react";
 import LoginOrRegister from "../LoginOrRegister/LoginOrRegister";
 import { updateUserSession } from "../../store/userSession-slise";
+import { Link } from "react-router-dom";
 export type RootState = ReturnType<typeof store.getState>;
 const Footer = () => {
   const isLogin = useSelector((state: RootState) => state.UserSession.id);
@@ -64,15 +65,19 @@ const Footer = () => {
           </div>
           {!sizeScreenTablet && (
             <div className="pages">
-              <Button type="link">
-                <Text body5>Программы</Text>
-              </Button>
+              <Link to="/programms">
+                <Button type="link">
+                  <Text body5>Программы</Text>
+                </Button>
+              </Link>
               <Button type="link">
                 <Text body5>Сведения об организации</Text>
               </Button>
-              <Button type="link">
-                <Text body5>Новости</Text>
-              </Button>
+              <Link to="/novosti">
+                <Button type="link">
+                  <Text body5>Новости</Text>
+                </Button>
+              </Link>
               <Button type="link">
                 <Text body5>Контакты</Text>
               </Button>

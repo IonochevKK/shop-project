@@ -33,9 +33,11 @@ const FilterProgram: React.FC<FilterProgramProps> = ({
   const [listbreadCrumbs, setListBreadCrumbs] = useState<BreadCrumbItemProps[]>(
     []
   );
+
   useEffect(() => {
     setListBreadCrumbs(getItemsBreadCrumbs());
   }, []);
+
   const handleSumbmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);

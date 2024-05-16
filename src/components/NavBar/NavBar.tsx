@@ -122,11 +122,11 @@ const NavBar: React.FC = () => {
                 <Logo />
               </Link>
             </span>
-              <span>
-                Приволжский центр <br />
-                профессионального <br />
-                обучения
-              </span>
+            <span>
+              Приволжский центр <br />
+              профессионального <br />
+              обучения
+            </span>
           </div>
           <div className="search-container" ref={dropdownRef}>
             {!sizeScreenMobile && (
@@ -227,9 +227,11 @@ const NavBar: React.FC = () => {
                     <Button type="link">
                       <Text body5>Сведения об организации</Text>
                     </Button>
-                    <Button type="link">
-                      <Text body5>Новости</Text>
-                    </Button>
+                    <Link to="/novosti">
+                      <Button type="link">
+                        <Text body5>Новости</Text>
+                      </Button>
+                    </Link>
                     <Button type="link">
                       <Text body5>Контакты</Text>
                     </Button>

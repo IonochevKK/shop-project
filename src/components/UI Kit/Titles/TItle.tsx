@@ -4,6 +4,7 @@ import classNames from "classnames";
 import Button from "../Button/Button";
 import Text from "../Text/Text";
 type TitleType = "flex" | "flexText";
+
 interface TitleProps {
   type: TitleType;
   children: string | React.ReactNode;

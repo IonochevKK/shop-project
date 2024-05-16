@@ -1,0 +1,25 @@
+.blogPost {
+  width: 100%;
+  overflow: hidden;
+  .container-blogpost {
+    max-width: 1400px;
+    margin: 0 auto;
+    .title{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 20px 0px;
+    }
+    .image-container{
+      img {
+        width: 100%;
+        max-height: 350px;
+        object-fit: cover;
+      }
+    }
+    .date {
+      padding: 0px 0px 10px 0px;
+    }
+  }
+}
