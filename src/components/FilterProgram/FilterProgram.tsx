@@ -15,6 +15,7 @@ import BreadCrumbItem, {
 } from "../UI Kit/BreadCrubms/BreadCrumbItem/BreadCrumbItem";
 import { useEffect, useState } from "react";
 import { getItemsBreadCrumbs } from "../../utils/getItemsBreadCrumbs";
+import { cards } from "../../data/dataProgramm";
 interface FilterProgramProps {
   isbreadCrumbs?: boolean;
   link?: boolean;
@@ -35,7 +36,7 @@ const FilterProgram: React.FC<FilterProgramProps> = ({
   );
 
   useEffect(() => {
-    setListBreadCrumbs(getItemsBreadCrumbs());
+    setListBreadCrumbs(getItemsBreadCrumbs(cards));
   }, []);
 
   const handleSumbmit = (event: React.FormEvent<HTMLFormElement>) => {

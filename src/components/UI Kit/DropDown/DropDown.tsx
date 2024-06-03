@@ -4,6 +4,8 @@ import "./dropDown.scss";
 import classNames from "classnames";
 import DropDownArrow from "../../../../public/svg/dropdown_down.svg?react";
 import DropDownArrowUp from "../../../../public/svg/dropdown_up.svg?react";
+import { Link, useNavigate } from "react-router-dom";
+import Button from "../Button/Button";
 
 export interface Option {
   value: string;
@@ -13,11 +15,13 @@ export interface Option {
 interface DropDownProps {
   options: Option[];
   name?: string;
+  isLinks?: boolean;
 }
 
-const DropDown: React.FC<DropDownProps> = ({ options, name }) => {
+const DropDown: React.FC<DropDownProps> = ({ options, name, isLinks }) => {
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setSelectedOption(options[0]);
@@ -32,6 +36,11 @@ const DropDown: React.FC<DropDownProps> = ({ options, name }) => {
     setIsOpen(false);
   };
 
+  const handleSelectOptionInLocation = (option: Option) => {
+    setSelectedOption(option);
+    setIsOpen(false);
+    navigate(option.value);
+  };
   return (
     <div className="container-DropDown">
       <div
@@ -59,19 +68,41 @@ const DropDown: React.FC<DropDownProps> = ({ options, name }) => {
             )}
           </span>
         </div>
-        {isOpen && (
-          <div className={classNames("options", { open: isOpen })}>
-            {options.map((option, index) => (
-              <div
-                key={index}
-                className="option"
-                onClick={() => handleSelectOption(option)}
-                data-value={option.value}
-              >
-                {option.label}
+
+        {!isLinks ? (
+          <>
+            {isOpen && (
+              <div className={classNames("options", { open: isOpen })}>
+                {options.map((option, index) => (
+                  <div
+                    key={index}
+                    className="option"
+                    onClick={() => handleSelectOption(option)}
+                    data-value={option.value}
+                  >
+                    {option.label}
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            )}
+          </>
+        ) : (
+          <>
+            {isOpen && (
+              <div className={classNames("options", { open: isOpen })}>
+                {options.map((option, index) => (
+                  <div
+                    key={index}
+                    className="option"
+                    onClick={() => handleSelectOptionInLocation(option)}
+                    data-value={option.value}
+                  >
+                    {option.label}
+                  </div>
+                ))}
+              </div>
+            )}
+          </>
         )}
       </div>
       {selectedOption && (

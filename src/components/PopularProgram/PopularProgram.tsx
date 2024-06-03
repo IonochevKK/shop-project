@@ -59,7 +59,7 @@ const PopularProgram: React.FC<PopularProgramProps> = ({
     } else {
       setCardsList(selectedCards);
     }
-  }, [sizeScreenTablet, cardsAll, cardsFilter,currentPage]);
+  }, [sizeScreenTablet, cardsAll, cardsFilter, currentPage]);
 
   return (
     <div className="popularProgram" style={backgorund}>
@@ -85,19 +85,30 @@ const PopularProgram: React.FC<PopularProgramProps> = ({
           </div>
         )}
         <div className="cards-container">
-          {cardsList.map((card, i) => (
-            <div key={i} className="card-item">
-              <CardProgram
-                id={card.id}
-                titleText={card.titleText}
-                price={card.price}
-                priceSale={card?.priceSale}
-                HMOlabel={card?.HMOlabel}
-                labelText={card.labelText}
-                nameSpecial={card.nameSpecial}
-              />
-            </div>
-          ))}
+          {cardsList.length !== 0 && (
+            <>
+              {cardsList.map((card, i) => (
+                <div key={i} className="card-item">
+                  <CardProgram
+                    id={card.id}
+                    titleText={card.titleText}
+                    price={card.price}
+                    priceSale={card?.priceSale}
+                    HMOlabel={card?.HMOlabel}
+                    labelText={card.labelText}
+                    nameSpecial={card.nameSpecial}
+                  />
+                </div>
+              ))}
+            </>
+          )}
+          {cardsList.length === 0 && (
+            <>
+              <div className="text-flex">
+                <Text body2_bold>По запросу ничего не найдено</Text>
+              </div>
+            </>
+          )}
         </div>
         {pagination && (
           <div className="pagination-container">

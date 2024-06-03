@@ -13,6 +13,7 @@ interface LabelProps {
   sizeTypeCards?: LableSizeTypeCards;
   children: React.ReactNode | string;
   block?: boolean;
+  classname?: React.CSSProperties;
 }
 const Label: React.FC<LabelProps> = ({
   type,
@@ -21,10 +22,12 @@ const Label: React.FC<LabelProps> = ({
   block,
   typeCards,
   sizeTypeCards,
+  classname,
 }) => {
   return (
     <>
       <div
+        style={classname}
         data-testid="label"
         className={classNames(
           "label",

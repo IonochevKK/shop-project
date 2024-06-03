@@ -1,0 +1,11 @@
+.sidebar {
+  text-align: left;
+  width: 100%;
+  .container-items1 {
+    padding: 0px !important;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+}

@@ -349,12 +349,28 @@ export const routes: BreadCrumbItemProps[] = [
     text: "Новости",
   },
   {
-    href: "/kontact",
+    href: "/contact",
     text: "Контакты",
   },
   {
     href: "/svedenia-ob-organizazii",
     text: "Сведения об организации",
+  },
+  {
+    href: "/personal-account",
+    text: "Личный кабинет",
+  },
+  {
+    href: "/personal-data",
+    text: "Личные данные",
+  },
+  {
+    href: "/training-documents",
+    text: "Документы об обучении",
+  },
+  {
+    href: "/purchase-history",
+    text: "История покупок",
   },
 ];
 

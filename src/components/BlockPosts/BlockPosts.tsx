@@ -10,7 +10,7 @@ import BreadCrumbItem, {
   BreadCrumbItemProps,
 } from "../UI Kit/BreadCrubms/BreadCrumbItem/BreadCrumbItem";
 import { getItemsBreadCrumbs } from "../../utils/getItemsBreadCrumbs";
-import { cardsList } from "../../data/dataProgramm";
+import { cards, cardsList } from "../../data/dataProgramm";
 import Button from "../UI Kit/Button/Button";
 type BlockPostsType = "text" | "notext";
 interface BlockPostsProps {
@@ -42,7 +42,7 @@ const BlockPosts: React.FC<BlockPostsProps> = ({
   };
 
   useEffect(() => {
-    setListBreadCrumbs(getItemsBreadCrumbs());
+    setListBreadCrumbs(getItemsBreadCrumbs(cardsList));
     if (lenghtCards) {
       setCardsListPosts(cardsList.slice(0, lenghtCards));
       setLoadedCardsCount(lenghtCards);

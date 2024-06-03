@@ -1,0 +1,44 @@
+@import "../../globalStyles/breakPoints.scss";
+.enterYourPersonalData {
+  width: 100%;
+  padding: 0px 20px;
+  @include mobile {
+    padding: 0px 5px;
+  }
+  background-color: #fff;
+  border-radius: 10px;
+  .container {
+    background-color: #fff;
+    .container-personalData {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      .personalData {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .residence {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .items {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        .item {
+          width: 100%;
+          max-width: 350px;
+          @include tablet {
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

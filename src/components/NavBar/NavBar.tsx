@@ -160,7 +160,9 @@ const NavBar: React.FC = () => {
                 )}
                 {isLogin && (
                   <>
-                    <SvgIcon type="user" />
+                    <Link to="/personal-account/personal-data">
+                      <SvgIcon type="user" />
+                    </Link>
                     <SvgIcon type="basket" countGoods={99} />
                     {!sizeScreenTablet && (
                       <Button type="secondary_2" onClick={onHandleClickLogout}>
@@ -225,16 +227,20 @@ const NavBar: React.FC = () => {
                       </Link>
                     </Button>
                     <Button type="link">
-                      <Text body5>Сведения об организации</Text>
+                      <Link to={`/info-organisation`}>
+                        <Text body5>Сведения об организации</Text>
+                      </Link>
                     </Button>
                     <Link to="/novosti">
                       <Button type="link">
                         <Text body5>Новости</Text>
                       </Button>
                     </Link>
-                    <Button type="link">
-                      <Text body5>Контакты</Text>
-                    </Button>
+                    <Link to="/contact">
+                      <Button type="link">
+                        <Text body5>Контакты</Text>
+                      </Button>
+                    </Link>
                   </div>
                   <div className="contacts">
                     <div className="phoneNumbers">

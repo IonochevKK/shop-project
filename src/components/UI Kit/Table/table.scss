@@ -1,0 +1,30 @@
+.table {
+  width: 100%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  .table-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+
+    .table-header,
+    .table-body {
+      display: contents;
+    }
+
+    .table-header .table-cell,
+    .table-body .table-cell {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .table-header .table-cell {
+      font-weight: bold;
+    }
+
+    .table-row {
+      display: contents;
+    }
+  }
+}
