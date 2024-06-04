@@ -9,6 +9,7 @@ import PersonalAccount from "./pages/PersonalАccount/PersonalAccount";
 import EnterYourPersonalData from "./components/EnterYourPersonalData/EnterYourPersonalData";
 import PurchaseHistory from "./pages/PersonalАccount/components/PurchaseHistory/PurchaseHistory";
 import TrainingDocuments from "./pages/PersonalАccount/components/TrainingDocuments/TrainingDocuments";
+import BasketUser from "./pages/BasketUser/BasketUser";
 
 function App() {
   return (
@@ -17,8 +18,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="programms" element={<Programms />} />
         <Route path="novosti" element={<PageNews />} />
-        <Route path="contact" element={<ContactsPage />} />
         <Route path="novosti/:postId" element={<PostPage />} />
+        <Route path="contact" element={<ContactsPage />} />
+        <Route path="basket-user" element={<BasketUser />} />
         <Route path="personal-account/*" element={<PersonalAccount />}>
           <Route path="personal-data" element={<EnterYourPersonalData />} />
           <Route path="training-documents" element={<TrainingDocuments />} />

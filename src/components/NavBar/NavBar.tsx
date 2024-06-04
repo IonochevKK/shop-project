@@ -163,7 +163,9 @@ const NavBar: React.FC = () => {
                     <Link to="/personal-account/personal-data">
                       <SvgIcon type="user" />
                     </Link>
-                    <SvgIcon type="basket" countGoods={99} />
+                    <Link to='/basket-user'>
+                      <SvgIcon type="basket" countGoods={99} />
+                    </Link>
                     {!sizeScreenTablet && (
                       <Button type="secondary_2" onClick={onHandleClickLogout}>
                         <Text body5>Выйти из личного кабинета</Text>
