@@ -10,6 +10,7 @@ import EnterYourPersonalData from "./components/EnterYourPersonalData/EnterYourP
 import PurchaseHistory from "./pages/PersonalАccount/components/PurchaseHistory/PurchaseHistory";
 import TrainingDocuments from "./pages/PersonalАccount/components/TrainingDocuments/TrainingDocuments";
 import BasketUser from "./pages/BasketUser/BasketUser";
+import ProgramDescription from "./pages/ProgramDescription/ProgramDescription";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="programms" element={<Programms />} />
+        <Route path="programms/:programmId" element={<ProgramDescription />} />
         <Route path="novosti" element={<PageNews />} />
         <Route path="novosti/:postId" element={<PostPage />} />
         <Route path="contact" element={<ContactsPage />} />

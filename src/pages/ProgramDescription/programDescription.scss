@@ -1,0 +1,47 @@
+@import "../../globalStyles/breakPoints.scss";
+.programDescription {
+  width: 100%;
+  overflow: hidden;
+  @media screen and (max-width: 1400px) {
+    padding: 20px;
+  }
+  @include mobile {
+    padding: 5px;
+  }
+  .container-programDescription {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    padding: 20px 0px;
+    .breadCrumbs {
+      width: 100%;
+    }
+    .backgorund-image {
+      .img {
+        position: absolute;
+        top: 15%;
+        right: 12%;
+        z-index: -1;
+      }
+      .img-main {
+        z-index: 0;
+      }
+      .img-right {
+        right: -10%;
+        top: -5%;
+      }
+    }
+    .programmblock {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      .card-block {
+        z-index: 10;
+      }
+      .title-programmblock {
+        z-index: 10;
+      }
+    }
+  }
+}

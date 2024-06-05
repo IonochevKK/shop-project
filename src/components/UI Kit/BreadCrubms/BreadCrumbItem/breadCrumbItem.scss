@@ -1,0 +1,15 @@
+@import "../../../../globalStyles/breakPoints.scss";
+.breadCrumbItem {
+  @include tablet {
+    max-width: 400px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  @include mobile {
+    max-width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}

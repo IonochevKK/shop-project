@@ -49,18 +49,18 @@ export const CountHours: Option[] = [
 
 export const cards: CardProgramProps[] = [
   {
-    id: 1,
+    id: "f823297b-e5fa-5d16-ba11-290fcffc897f",
     titleText:
       "Современные аспекты оказания сестринской помощи в различных отделениях",
     nameSpecial:
-      "Sovremennie-aspecty-sestrinsoy-pomochi-v-razlichih-otdeleniah",
+      "sovremennie-aspecty-sestrinsoy-pomochi-v-razlichih-otdeleniah",
     price: "1 500",
     priceSale: "2 450",
     HMOlabel: false,
     labelText: "144 ак. ч.",
   },
   {
-    id: 2,
+    id: "ea4bb89f-d88d-58ec-b659-fb192d40207a",
     titleText: "Протозоозы и гельминтозы",
     nameSpecial: "protozy-i-gelmitozy",
     price: "2 500",
@@ -69,27 +69,29 @@ export const cards: CardProgramProps[] = [
     labelText: "144 ак. ч. (ЗЕТ)",
   },
   {
-    id: 3,
+    id: "345e80b9-b716-5ecd-afa8-cd2cf0e25fdd",
     titleText:
       "Бронхиальная астма и хроническая обструктивная болезнь лёгких в амбулаторной практике",
-    nameSpecial: "Bronxialnay-astma-i-xronucheskay-obstrycrivnay-bolez",
+    nameSpecial: "bronxialnay-astma-i-xronucheskay-obstrycrivnay-bolez",
     price: "1 500",
+    priceSale: "",
+    priceSale: "",
     HMOlabel: false,
     labelText: "16 ак. ч.",
   },
   {
-    id: 4,
+    id: "77880e20-b671-5397-b188-7e31e3b72c00",
     titleText:
       "Современные аспекты оказания сестринской помощи в различных отделениях",
     nameSpecial:
-      "Sovremennie-aspecty-sestrinsoy-pomochi-v-razlichih-otdeleniah",
+      "sovremennie-aspecty-sestrinsoy-pomochi-v-razlichih-otdeleniah",
     price: "1 500",
     priceSale: "2 450",
     HMOlabel: false,
     labelText: "144 ак. ч.",
   },
   {
-    id: 5,
+    id: "335662f7-051c-5c02-8aff-3386edebb38b",
     titleText: "Протозоозы и гельминтозы",
     nameSpecial: "protozy-i-gelmitozy",
     price: "2 500",
@@ -98,27 +100,28 @@ export const cards: CardProgramProps[] = [
     labelText: "144 ак. ч. (ЗЕТ)",
   },
   {
-    id: 6,
+    id: "9ccc9d31-a0cc-5580-942d-4ccdaeac67e0",
     titleText:
       "Бронхиальная астма и хроническая обструктивная болезнь лёгких в амбулаторной практике",
-    nameSpecial: "Bronxialnay-astma-i-xronucheskay-obstrycrivnay-bolez",
+    nameSpecial: "bronxialnay-astma-i-xronucheskay-obstrycrivnay-bolez",
     price: "1 500",
+    priceSale: "",
     HMOlabel: false,
     labelText: "16 ак. ч.",
   },
   {
-    id: 7,
+    id: "18d1cd7c-13f5-5c4c-8458-d7335df091f7",
     titleText:
       "Современные аспекты оказания сестринской помощи в различных отделениях",
     nameSpecial:
-      "Sovremennie-aspecty-sestrinsoy-pomochi-v-razlichih-otdeleniah",
+      "sovremennie-aspecty-sestrinsoy-pomochi-v-razlichih-otdeleniah",
     price: "1 500",
     priceSale: "2 450",
     HMOlabel: false,
     labelText: "144 ак. ч.",
   },
   {
-    id: 8,
+    id: "82c137b9-b0cd-5b43-bd7f-fec5eb889046",
     titleText: "Протозоозы и гельминтозы",
     nameSpecial: "protozy-i-gelmitozy",
     price: "2 500",
@@ -127,27 +130,28 @@ export const cards: CardProgramProps[] = [
     labelText: "144 ак. ч. (ЗЕТ)",
   },
   {
-    id: 9,
+    id: "243f4ea6-e571-51ba-811f-8777517c52c7",
     titleText:
       "Бронхиальная астма и хроническая обструктивная болезнь лёгких в амбулаторной практике",
-    nameSpecial: "Bronxialnay-astma-i-xronucheskay-obstrycrivnay-bolez",
+    nameSpecial: "bronxialnay-astma-i-xronucheskay-obstrycrivnay-bolez",
     price: "1 500",
+    priceSale: "",
     HMOlabel: false,
     labelText: "16 ак. ч.",
   },
   {
-    id: 10,
+    id: "97bd0a54-af6d-594c-8a7a-987e85784113",
     titleText:
       "Современные аспекты оказания сестринской помощи в различных отделениях",
     nameSpecial:
-      "Sovremennie-aspecty-sestrinsoy-pomochi-v-razlichih-otdeleniah",
+      "sovremennie-aspecty-sestrinsoy-pomochi-v-razlichih-otdeleniah",
     price: "1 500",
     priceSale: "2 450",
     HMOlabel: false,
     labelText: "144 ак. ч.",
   },
   {
-    id: 11,
+    id: "d833a50f-082d-510b-a9ab-7d7022652ef2",
     titleText: "Протозоозы и гельминтозы",
     nameSpecial: "protozy-i-gelmitozy",
     price: "2 500",
@@ -156,27 +160,28 @@ export const cards: CardProgramProps[] = [
     labelText: "144 ак. ч. (ЗЕТ)",
   },
   {
-    id: 12,
+    id: "52a90a99-9a3d-52ba-9f33-ae80bd10e819",
     titleText:
       "Бронхиальная астма и хроническая обструктивная болезнь лёгких в амбулаторной практике",
-    nameSpecial: "Bronxialnay-astma-i-xronucheskay-obstrycrivnay-bolez",
+    nameSpecial: "bronxialnay-astma-i-xronucheskay-obstrycrivnay-bolez",
     price: "1 500",
+    priceSale: "",
     HMOlabel: false,
     labelText: "16 ак. ч.",
   },
   {
-    id: 13,
+    id: "5e389599-da19-5c7c-bfaa-91ea428a1401",
     titleText:
       "Современные аспекты оказания сестринской помощи в различных отделениях",
     nameSpecial:
-      "Sovremennie-aspecty-sestrinsoy-pomochi-v-razlichih-otdeleniah",
+      "sovremennie-aspecty-sestrinsoy-pomochi-v-razlichih-otdeleniah",
     price: "1 500",
     priceSale: "2 450",
     HMOlabel: false,
     labelText: "144 ак. ч.",
   },
   {
-    id: 14,
+    id: "a26ec6f7-8126-5876-8e28-7fa42e497545",
     titleText: "Протозоозы и гельминтозы",
     nameSpecial: "protozy-i-gelmitozy",
     price: "2 500",
@@ -185,26 +190,26 @@ export const cards: CardProgramProps[] = [
     labelText: "144 ак. ч. (ЗЕТ)",
   },
   {
-    id: 15,
+    id: "493489e0-db25-5814-8c45-a510cce9d6cd",
     titleText: "Test",
-    nameSpecial: "Bronxialnay-astma-i-xronucheskay-obstrycrivnay-bolez",
+    nameSpecial: "bronxialnay-astma-i-xronucheskay-obstrycrivnay-bolez",
     price: "1 500",
     HMOlabel: false,
     labelText: "16 ак. ч.",
   },
   {
-    id: 16,
+    id: "56f6b7cb-cddc-504a-b200-d6440e1ac0c3",
     titleText:
       "Современные аспекты оказания сестринской помощи в различных отделениях",
     nameSpecial:
-      "Sovremennie-aspecty-sestrinsoy-pomochi-v-razlichih-otdeleniah",
+      "sovremennie-aspecty-sestrinsoy-pomochi-v-razlichih-otdeleniah",
     price: "1 500",
     priceSale: "2 450",
     HMOlabel: false,
     labelText: "144 ак. ч.",
   },
   {
-    id: 17,
+    id: "580659e6-936f-5114-b59b-e87837c44c3f",
     titleText: "Протозоозы и гельминтозы",
     nameSpecial: "protozy-i-gelmitozy",
     price: "2 500",
@@ -213,27 +218,28 @@ export const cards: CardProgramProps[] = [
     labelText: "144 ак. ч. (ЗЕТ)",
   },
   {
-    id: 18,
+    id: "0aebcfeb-0ab6-559b-8d99-9193ebe452a2",
     titleText:
       "Бронхиальная астма и хроническая обструктивная болезнь лёгких в амбулаторной практике",
-    nameSpecial: "Bronxialnay-astma-i-xronucheskay-obstrycrivnay-bolez",
+    nameSpecial: "bronxialnay-astma-i-xronucheskay-obstrycrivnay-bolez",
     price: "1 500",
+    priceSale: "",
     HMOlabel: false,
     labelText: "16 ак. ч.",
   },
   {
-    id: 4,
+    id: "a543c1f5-d730-51e6-9ad1-ce14eec5c0f9",
     titleText:
       "Современные аспекты оказания сестринской помощи в различных отделениях",
     nameSpecial:
-      "Sovremennie-aspecty-sestrinsoy-pomochi-v-razlichih-otdeleniah",
+      "sovremennie-aspecty-sestrinsoy-pomochi-v-razlichih-otdeleniah",
     price: "1 500",
     priceSale: "2 450",
     HMOlabel: false,
     labelText: "144 ак. ч.",
   },
   {
-    id: 5,
+    id: "f489a1d2-5350-5af7-9bbf-0733916e5451",
     titleText: "Протозоозы и гельминтозы",
     nameSpecial: "protozy-i-gelmitozy",
     price: "2 500",
@@ -242,27 +248,28 @@ export const cards: CardProgramProps[] = [
     labelText: "144 ак. ч. (ЗЕТ)",
   },
   {
-    id: 6,
+    id: "695757a2-4ffa-5d5d-a933-9a119fffdd10",
     titleText:
       "Бронхиальная астма и хроническая обструктивная болезнь лёгких в амбулаторной практике",
-    nameSpecial: "Bronxialnay-astma-i-xronucheskay-obstrycrivnay-bolez",
+    nameSpecial: "bronxialnay-astma-i-xronucheskay-obstrycrivnay-bolez",
     price: "1 500",
+    priceSale: "",
     HMOlabel: false,
     labelText: "16 ак. ч.",
   },
   {
-    id: 7,
+    id: "5ebdea80-6a06-5a09-bbb0-07be0bf56a2f",
     titleText:
       "Современные аспекты оказания сестринской помощи в различных отделениях",
     nameSpecial:
-      "Sovremennie-aspecty-sestrinsoy-pomochi-v-razlichih-otdeleniah",
+      "sovremennie-aspecty-sestrinsoy-pomochi-v-razlichih-otdeleniah",
     price: "1 500",
     priceSale: "2 450",
     HMOlabel: false,
     labelText: "144 ак. ч.",
   },
   {
-    id: 8,
+    id: "37535c46-c2bb-5f3c-ab61-f5fb1df978d2",
     titleText: "Протозоозы и гельминтозы",
     nameSpecial: "protozy-i-gelmitozy",
     price: "2 500",
@@ -271,27 +278,28 @@ export const cards: CardProgramProps[] = [
     labelText: "144 ак. ч. (ЗЕТ)",
   },
   {
-    id: 9,
+    id: "c2699987-2199-5f00-aae1-4938f191bdce",
     titleText:
       "Бронхиальная астма и хроническая обструктивная болезнь лёгких в амбулаторной практике",
-    nameSpecial: "Bronxialnay-astma-i-xronucheskay-obstrycrivnay-bolez",
+    nameSpecial: "bronxialnay-astma-i-xronucheskay-obstrycrivnay-bolez",
     price: "1 500",
+    priceSale: "",
     HMOlabel: false,
     labelText: "16 ак. ч.",
   },
   {
-    id: 10,
+    id: "3ff66662-20b8-56c0-b75e-5bcc5d82a243",
     titleText:
       "Современные аспекты оказания сестринской помощи в различных отделениях",
     nameSpecial:
-      "Sovremennie-aspecty-sestrinsoy-pomochi-v-razlichih-otdeleniah",
+      "sovremennie-aspecty-sestrinsoy-pomochi-v-razlichih-otdeleniah",
     price: "1 500",
     priceSale: "2 450",
     HMOlabel: false,
     labelText: "144 ак. ч.",
   },
   {
-    id: 11,
+    id: "1a3719a8-568b-50da-8433-8d876c4f3a79",
     titleText: "Протозоозы и гельминтозы",
     nameSpecial: "protozy-i-gelmitozy",
     price: "2 500",
@@ -300,27 +308,28 @@ export const cards: CardProgramProps[] = [
     labelText: "144 ак. ч. (ЗЕТ)",
   },
   {
-    id: 12,
+    id: "75ac450f-2861-51eb-989a-1413899dffd7",
     titleText:
       "Бронхиальная астма и хроническая обструктивная болезнь лёгких в амбулаторной практике",
-    nameSpecial: "Bronxialnay-astma-i-xronucheskay-obstrycrivnay-bolez",
+    nameSpecial: "bronxialnay-astma-i-xronucheskay-obstrycrivnay-bolez",
     price: "1 500",
+    priceSale: "",
     HMOlabel: false,
     labelText: "16 ак. ч.",
   },
   {
-    id: 13,
+    id: "4e1ceb03-a96d-5314-a6be-ce9d29f6d73d",
     titleText:
       "Современные аспекты оказания сестринской помощи в различных отделениях",
     nameSpecial:
-      "Sovremennie-aspecty-sestrinsoy-pomochi-v-razlichih-otdeleniah",
+      "sovremennie-aspecty-sestrinsoy-pomochi-v-razlichih-otdeleniah",
     price: "1 500",
     priceSale: "2 450",
     HMOlabel: false,
     labelText: "144 ак. ч.",
   },
   {
-    id: 14,
+    id: "338754b4-d248-540f-a4cb-5756d8a0379b",
     titleText: "Протозоозы и гельминтозы",
     nameSpecial: "protozy-i-gelmitozy",
     price: "2 500",
@@ -329,11 +338,12 @@ export const cards: CardProgramProps[] = [
     labelText: "144 ак. ч. (ЗЕТ)",
   },
   {
-    id: 15,
+    id: "b7801a5f-2116-5298-9dcb-ae1c830b393b",
     titleText:
       "Бронхиальная астма и хроническая обструктивная болезнь лёгких в амбулаторной практике",
-    nameSpecial: "Bronxialnay-astma-i-xronucheskay-obstrycrivnay-bolez",
+    nameSpecial: "bronxialnay-astma-i-xronucheskay-obstrycrivnay-bolez",
     price: "1 500",
+    priceSale: "",
     HMOlabel: false,
     labelText: "16 ак. ч.",
   },
@@ -371,6 +381,18 @@ export const routes: BreadCrumbItemProps[] = [
   {
     href: "/purchase-history",
     text: "История покупок",
+  },
+  {
+    href: "/sovremennie-aspecty-sestrinsoy-pomochi-v-razlichih-otdeleniah",
+    text: "Современные аспекты оказания сестринской помощи в различных отделениях",
+  },
+  {
+    href: "/protozy-i-gelmitozy",
+    text: "Протозоозы и гельминтозы",
+  },
+  {
+    href: "/bronxialnay-astma-i-xronucheskay-obstrycrivnay-bolez",
+    text: "Бронхиальная астма и хроническая обструктивная болезнь лёгких в амбулаторной практике",
   },
 ];
 

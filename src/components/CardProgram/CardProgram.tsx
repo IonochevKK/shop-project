@@ -3,13 +3,14 @@ import "./cardProgram.scss";
 import Button from "../UI Kit/Button/Button";
 import Label from "../UI Kit/Label/Label";
 import Text from "../UI Kit/Text/Text";
+import { Link } from "react-router-dom";
 
 export interface CardProgramProps {
-  id: number;
+  id: string;
   titleText: string;
-  price: string | React.ReactNode;
-  priceSale?: number | string | React.ReactNode;
-  HMOlabel?: boolean;
+  price: string;
+  priceSale: string;
+  HMOlabel: boolean;
   labelText: string;
   nameSpecial: string;
 }
@@ -20,6 +21,8 @@ const CardProgram: React.FC<CardProgramProps> = ({
   priceSale,
   HMOlabel,
   labelText,
+  nameSpecial,
+  id,
 }) => {
   return (
     <div className="card">
@@ -59,9 +62,11 @@ const CardProgram: React.FC<CardProgramProps> = ({
           </div>
           <div className="buttons-items">
             <div className="item">
-              <Button type="secondary_2" block padding="10px 25px 10px 25px">
-                <Text body3>Подробнее</Text>
-              </Button>
+              <Link to={`/programms/${id}`}>
+                <Button type="secondary_2" block padding="10px 25px 10px 25px">
+                  <Text body3>Подробнее</Text>
+                </Button>
+              </Link>
             </div>
             <div className="item">
               <Button type="primary" block padding="12px 25px 12px 25px">
