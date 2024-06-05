@@ -13,6 +13,7 @@ export interface CardProgramProps {
   HMOlabel: boolean;
   labelText: string;
   nameSpecial: string;
+  onClick?: (card: CardProgramProps) => void; 
 }
 
 const CardProgram: React.FC<CardProgramProps> = ({
@@ -23,7 +24,23 @@ const CardProgram: React.FC<CardProgramProps> = ({
   labelText,
   nameSpecial,
   id,
+  onClick,
 }) => {
+  
+  const handleOnClick = () => {
+    if (onClick) {
+      onClick({
+        id,
+        titleText,
+        price,
+        priceSale,
+        HMOlabel,
+        labelText,
+        nameSpecial,
+      });
+    }
+  };
+
   return (
     <div className="card">
       <div className="card-container">
@@ -69,7 +86,12 @@ const CardProgram: React.FC<CardProgramProps> = ({
               </Link>
             </div>
             <div className="item">
-              <Button type="primary" block padding="12px 25px 12px 25px">
+              <Button
+                type="primary"
+                block
+                padding="12px 25px 12px 25px"
+                onClick={handleOnClick}
+              >
                 <Text body3>Записаться</Text>
               </Button>
             </div>

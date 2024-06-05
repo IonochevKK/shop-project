@@ -4,7 +4,32 @@ import Title from "../../../../components/UI Kit/Titles/TItle";
 import Text from "../../../../components/UI Kit/Text/Text";
 import Button from "../../../../components/UI Kit/Button/Button";
 import Input from "../../../../components/UI Kit/Input/Input";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store/store";
 const PaymentProduct = () => {
+  const basketUserListProduct = useSelector(
+    (state: RootState) => state.BasketUser
+  );
+  const totals = basketUserListProduct.reduce(
+    (acc, item) => {
+      acc.allProgramms += 1;
+      acc.allCostNoSale +=
+        +item.basketUser.price.split(" ").join("") <
+        +item.basketUser.priceSale.split(" ").join("")
+          ? +item.basketUser.priceSale.split(" ").join("")
+          : +item.basketUser.price.split(" ").join("");
+      acc.allSale +=
+        +item.basketUser.priceSale.split(" ").join("") -
+          +item.basketUser.price.split(" ").join("") <
+        0
+          ? 0
+          : +item.basketUser.priceSale.split(" ").join("") -
+            +item.basketUser.price.split(" ").join("");
+
+      return acc;
+    },
+    { allProgramms: 0, allCostNoSale: 0, allSale: 0 }
+  );
   return (
     <div className="paymentProduct">
       <div className="container-paymentProduct">
@@ -20,15 +45,7 @@ const PaymentProduct = () => {
                 <Text body5> Всего программ</Text>
               </div>
               <div className="item-count">
-                <Text body5>3 шт</Text>
-              </div>
-            </div>
-            <div className="item-payment">
-              <div className="item-subtitle">
-                <Text body5> Всего программ</Text>
-              </div>
-              <div className="item-count">
-                <Text body5>3 шт</Text>
+                <Text body5>{totals.allProgramms} шт</Text>
               </div>
             </div>
             <div className="item-payment">
@@ -36,7 +53,7 @@ const PaymentProduct = () => {
                 <Text body5>Стоимость</Text>
               </div>
               <div className="item-count">
-                <Text body5>11 400 ₽ </Text>
+                <Text body5>{totals.allCostNoSale}₽ </Text>
               </div>
             </div>
             <div className="item-payment">
@@ -44,7 +61,7 @@ const PaymentProduct = () => {
                 <Text body5> Скидка</Text>
               </div>
               <div className="item-count">
-                <Text body5>7500 ₽</Text>
+                <Text body5>{totals.allSale} ₽</Text>
               </div>
             </div>
             <div className="item-payment">
@@ -52,7 +69,9 @@ const PaymentProduct = () => {
                 <Text body3_bold> Итого</Text>
               </div>
               <div className="item-count">
-                <Text body3_bold>3900 ₽</Text>
+                <Text body3_bold>
+                  {Math.abs(totals.allCostNoSale - totals.allSale)} ₽
+                </Text>
               </div>
             </div>
             <div className="item-payment">

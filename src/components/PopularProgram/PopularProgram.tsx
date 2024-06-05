@@ -7,8 +7,10 @@ import Divider from "../UI Kit/Divider/Divider";
 import { useResizeWidth } from "../../hooks/useResizeWidth";
 import Pagination from "../UI Kit/Pagination/Pagination";
 import { countCardsOnPage } from "../../utils/countCardsOnPage";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
+import { addItemBasket } from "../../store/basketUser-slise";
+import { addProductInMyBasket } from "../../libs/addProductInMyBasket";
 
 interface PopularProgramProps {
   title?: boolean;
@@ -27,6 +29,7 @@ const PopularProgram: React.FC<PopularProgramProps> = ({
   disableFilter,
   sliceCards,
 }) => {
+  const dispatch = useDispatch();
   const cardsFilter = useSelector(
     (state: RootState) => state.CardsStorage.filteredCards
   );
@@ -39,6 +42,8 @@ const PopularProgram: React.FC<PopularProgramProps> = ({
   const [cardsList, setCardsList] = useState<CardProgramProps[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPage] = useState<number[]>([]);
+
+  const userIdSession = useSelector((state: RootState) => state.UserSession.id);
 
   useEffect(() => {
     const selectedCards = disableFilter ? cardsAll : cardsFilter;
@@ -60,6 +65,13 @@ const PopularProgram: React.FC<PopularProgramProps> = ({
       setCardsList(selectedCards);
     }
   }, [sizeScreenTablet, cardsAll, cardsFilter, currentPage]);
+
+  const handleAddProductInBasket = (card: CardProgramProps) => {
+    dispatch(addItemBasket(card));
+    if (userIdSession) {
+      addProductInMyBasket(card, userIdSession);
+    }
+  };
 
   return (
     <div className="popularProgram" style={backgorund}>
@@ -97,6 +109,7 @@ const PopularProgram: React.FC<PopularProgramProps> = ({
                     HMOlabel={card?.HMOlabel}
                     labelText={card.labelText}
                     nameSpecial={card.nameSpecial}
+                    onClick={handleAddProductInBasket}
                   />
                 </div>
               ))}

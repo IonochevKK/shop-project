@@ -14,7 +14,10 @@ import { CardProgramProps } from "../../components/CardProgram/CardProgram";
 import MainImg from "../../../public/img/mask_group.png";
 import CropImg from "../../../public/img/crop-mini.png";
 import PopularProgram from "../../components/PopularProgram/PopularProgram";
+import { useDispatch } from "react-redux";
+import { addItemBasket } from "../../store/basketUser-slise";
 const ProgramDescription: React.FC = () => {
+  const dispatch = useDispatch();
   const [listbreadCrumbs, setListBreadCrumbs] = useState<BreadCrumbItemProps[]>(
     []
   );
@@ -29,6 +32,9 @@ const ProgramDescription: React.FC = () => {
     setCard(findCardProgramm);
   }, []);
 
+  const handleAddProductInBasket = (card: CardProgramProps) => {
+    dispatch(addItemBasket(card));
+  };
   return (
     <div className="programDescription">
       <Layout>
@@ -67,12 +73,20 @@ const ProgramDescription: React.FC = () => {
                   labelText={card?.labelText}
                   price={card?.price}
                   priceSale={card?.priceSale}
+                  titleText={card?.titleText}
+                  nameSpecial={card.nameSpecial}
+                  onClick={handleAddProductInBasket}
                 />
               )}
             </div>
           </div>
         </div>
-        <PopularProgram title cardsLength={3} sliceCards={3} backgorund={{background:"#fff"}}  />
+        <PopularProgram
+          title
+          cardsLength={3}
+          sliceCards={3}
+          backgorund={{ background: "#fff" }}
+        />
       </Layout>
     </div>
   );

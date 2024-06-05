@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../../components/Layout/Layout";
 import Title from "../../components/UI Kit/Titles/TItle";
 import Text from "../../components/UI Kit/Text/Text";
@@ -7,7 +7,27 @@ import Label from "../../components/UI Kit/Label/Label";
 import WarnLabelSvg from "../../../public/svg/warn-label.svg?react";
 import TableBasket from "./components/TableBasket/TableBasket";
 import PaymentProduct from "./components/PaymentProduct/PaymentProduct";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import {
+  deleteItemBasket,
+  deleteItemsInBasket,
+} from "../../store/basketUser-slise";
+import { Card } from "../../libs/fetchAllProductsUserBasket";
 const BasketUser = () => {
+  const dispatch = useDispatch();
+  const basketUserListProduct = useSelector(
+    (state: RootState) => state.BasketUser
+  );
+  const handleClickDeleteProductInBatcher = (card: Card) => {
+    dispatch(deleteItemBasket(card));
+  };
+
+  const handleDeleteItemsBasket = (id: string[]) => {
+    console.log(id)
+    dispatch(deleteItemsInBasket(id));
+  };
+
   return (
     <div className="basketUser">
       <Layout>
@@ -46,7 +66,11 @@ const BasketUser = () => {
             </div>
             <div className="container-payment">
               <div className="item-left">
-                <TableBasket />
+                <TableBasket
+                  listProduct={basketUserListProduct}
+                  handleDeleteItem={handleClickDeleteProductInBatcher}
+                  handleDeleteItemsBasket={handleDeleteItemsBasket}
+                />
               </div>
               <div className="item-right">
                 <PaymentProduct />

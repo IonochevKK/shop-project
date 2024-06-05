@@ -5,12 +5,18 @@ import GreenLineSvg from "../../../../../public/svg/green_line.svg?react";
 import DownloadSvg from "../../../../../public/svg/download.svg?react";
 import "./cardProgramDescription.scss";
 import Button from "../../../../components/UI Kit/Button/Button";
+import { addItemBasket } from "../../../../store/basketUser-slise";
+import { useDispatch } from "react-redux";
+import { CardProgramProps } from "../../../../components/CardProgram/CardProgram";
 interface CardProgramDescriptionProps {
-  id: number | string;
+  id: string;
   HMOlabel: boolean;
   labelText: string;
   price: string;
   priceSale: string;
+  titleText: string;
+  nameSpecial: string;
+  onClick?: (card: CardProgramProps) => void;
 }
 const CardProgramDescription: React.FC<CardProgramDescriptionProps> = ({
   id,
@@ -18,7 +24,23 @@ const CardProgramDescription: React.FC<CardProgramDescriptionProps> = ({
   labelText,
   price,
   priceSale,
+  titleText,
+  nameSpecial,
+  onClick,
 }) => {
+  const handleOnClick = () => {
+    if (onClick) {
+      onClick({
+        id,
+        titleText,
+        price,
+        priceSale,
+        HMOlabel,
+        labelText,
+        nameSpecial,
+      });
+    }
+  };
   return (
     <div className="cardProgramDescription">
       <div className="cotainer-label">
@@ -94,7 +116,7 @@ const CardProgramDescription: React.FC<CardProgramDescriptionProps> = ({
       </div>
       <div className="container-button-description-program">
         <div className="button-main">
-          <Button type="primary" block>
+          <Button type="primary" block onClick={handleOnClick}>
             <Text body3>Записаться на курс</Text>
           </Button>
         </div>

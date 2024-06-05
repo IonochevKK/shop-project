@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import React, { ChangeEventHandler } from "react";
 import "./checkBox.scss";
+
 type TypeCheckBox = "radio" | "checkbox";
 
 interface CheckBoxProps {
@@ -11,6 +12,7 @@ interface CheckBoxProps {
   children?: React.ReactNode;
   value?: string;
   classnames?: string | boolean;
+  checked?: boolean; // Добавляем свойство checked
 }
 
 const CheckBox: React.FC<CheckBoxProps> = ({
@@ -21,7 +23,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
   name,
   children,
   classnames,
-  
+  checked,
 }) => {
   const CheckBoxClasses = classNames(
     "checkbox",
@@ -36,6 +38,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
         type={type}
         onChange={onChange}
         disabled={disabled}
+        checked={checked}
       />
       <span>{children}</span>
     </label>

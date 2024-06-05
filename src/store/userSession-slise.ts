@@ -7,7 +7,7 @@ export interface InitialStateType {
 }
 
 const initialState: InitialStateType = {
-  id: `2323`,
+  id: null,
   name: null,
   email: null,
   createdAt: null,

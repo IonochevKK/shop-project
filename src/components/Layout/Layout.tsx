@@ -4,16 +4,18 @@ import NavBar from "../NavBar/NavBar";
 import "./layout.scss";
 import Cookie from "../UI Kit/Cookie/Cookie";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store/store";
+import { AppDispatch, RootState } from "../../store/store";
 import { ChangeCookies } from "../../store/cookies-slise";
 import { saveSessionToLocalStorage } from "../../utils/saveSessionToLocalStorage";
 import { GetSessionInLocalStorage } from "../../utils/GetSessionInLocalStorage";
 import { updateUserSession } from "../../store/userSession-slise";
+import { fetchBasketItems } from "../../store/basketUser-slise";
 
 interface LayoutProps {
   children?: React.ReactNode;
 }
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const dispatch: AppDispatch = useDispatch();
   const [isOpenCoockie, setIsOpenCoockie] = useState<boolean>(true);
   const handleCloseCoockie = useCallback(() => setIsOpenCoockie(false), []);
   const userSession = useSelector((state: RootState) => state.UserSession);
@@ -22,10 +24,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     (state: RootState) => state.CookiesStorage.acceptCookies
   );
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(ChangeCookies(true));
+    dispatch(fetchBasketItems());
     if (userSession.id) {
       saveSessionToLocalStorage(userSession.id);
     }
@@ -33,7 +34,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     if (localStorageUserSession) {
       dispatch(updateUserSession(localStorageUserSession));
     }
-    console.log(userSession);
   }, [dispatch, userSession]);
 
   return (
