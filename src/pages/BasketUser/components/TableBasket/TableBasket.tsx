@@ -4,12 +4,12 @@ import CheckBox from "../../../../components/UI Kit/CheckBox/CheckBox";
 import Button from "../../../../components/UI Kit/Button/Button";
 import Text from "../../../../components/UI Kit/Text/Text";
 import BasketSvg from "../../../../../public/svg/basket.svg?react";
-import { Card, userBasket } from "../../../../libs/fetchAllProductsUserBasket";
+import { userBasket } from "../../../../libs/fetchAllProductsUserBasket";
 
 interface TableBasketProps {
   listProduct: userBasket[];
-  handleDeleteItem: (card: Card) => void;
-  handleDeleteItemsBasket: (basketIds: string[]) => void;
+  handleDeleteItem: (card: userBasket) => void;
+  handleDeleteItemsBasket: (basketIds: userBasket[]) => void;
 }
 
 const TableBasket: React.FC<TableBasketProps> = ({
@@ -18,27 +18,34 @@ const TableBasket: React.FC<TableBasketProps> = ({
   handleDeleteItemsBasket,
 }) => {
   const [selectAll, setSelectAll] = useState(false);
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  const [selectedItems, setSelectedItems] = useState<userBasket[]>([]);
 
   useEffect(() => {
     const allSelected =
       listProduct.length > 0 &&
-      listProduct.every((item) => selectedItems.includes(item.basketUser.id));
+      listProduct.every((item) =>
+        selectedItems.some(
+          (selected) => selected.basketUser.id === item.basketUser.id
+        )
+      );
     setSelectAll(allSelected);
   }, [selectedItems, listProduct]);
+
   const handleSelectAll = () => {
     const newSelectAll = !selectAll;
     setSelectAll(newSelectAll);
 
-    const newSelectedItems = newSelectAll
-      ? listProduct.map((item) => item.basketUser.id)
-      : [];
+    const newSelectedItems = newSelectAll ? [...listProduct] : [];
     setSelectedItems(newSelectedItems);
   };
 
-  const handleSelectItem = (id: string) => {
+  const handleSelectItem = (item: userBasket) => {
     setSelectedItems((prev) =>
-      prev.includes(id) ? prev.filter((itemId) => itemId !== id) : [...prev, id]
+      prev.some((selected) => selected.basketUser.id === item.basketUser.id)
+        ? prev.filter(
+            (selected) => selected.basketUser.id !== item.basketUser.id
+          )
+        : [...prev, item]
     );
   };
 
@@ -70,8 +77,11 @@ const TableBasket: React.FC<TableBasketProps> = ({
                   <CheckBox
                     type="checkbox"
                     name={`checkbox-${item.userUid}`}
-                    checked={selectedItems.includes(item.basketUser.id)}
-                    onChange={() => handleSelectItem(item.basketUser.id)}
+                    checked={selectedItems.some(
+                      (selected) =>
+                        selected.basketUser.id === item.basketUser.id
+                    )}
+                    onChange={() => handleSelectItem(item)}
                   >
                     <Text body3>{item.basketUser.titleText}</Text>
                   </CheckBox>
@@ -81,17 +91,14 @@ const TableBasket: React.FC<TableBasketProps> = ({
                         <BasketSvg />
                       </Button>
                     </div>
-                    <Button
-                      type="link"
-                      onClick={() => handleDeleteItem(item.basketUser)}
-                    >
+                    <Button type="link" onClick={() => handleDeleteItem(item)}>
                       <Text body6>Удалить из корзины</Text>
                     </Button>
                   </div>
                 </div>
                 <div className="price">
                   <Text body3>{item.basketUser.price} ₽</Text>
-                  {item.basketUser.price && (
+                  {item.basketUser.priceSale && (
                     <span className="old-price">
                       {`${item.basketUser.priceSale}`}{" "}
                     </span>

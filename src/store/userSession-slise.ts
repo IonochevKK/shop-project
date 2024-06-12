@@ -1,16 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export interface InitialStateType {
-  id: string | null;
-  name: string | null;
-  email: string | null;
-  createdAt?: string | null;
+  id: string;
+  name: string;
+  email: string;
+  createdAt?: string;
 }
 
 const initialState: InitialStateType = {
-  id: null,
-  name: null,
-  email: null,
-  createdAt: null,
+  id: ``,
+  name: ``,
+  email: ``,
+  createdAt: ``,
 };
 
 export const userSession = createSlice({

@@ -14,17 +14,17 @@ const PaymentProduct = () => {
     (acc, item) => {
       acc.allProgramms += 1;
       acc.allCostNoSale +=
-        +item.basketUser.price.split(" ").join("") <
-        +item.basketUser.priceSale.split(" ").join("")
-          ? +item.basketUser.priceSale.split(" ").join("")
-          : +item.basketUser.price.split(" ").join("");
+        +item?.basketUser.price.split(" ").join("") <
+        +item?.basketUser.priceSale.split(" ").join("")
+          ? +item?.basketUser.priceSale.split(" ").join("")
+          : +item?.basketUser.price.split(" ").join("");
       acc.allSale +=
-        +item.basketUser.priceSale.split(" ").join("") -
-          +item.basketUser.price.split(" ").join("") <
+        +item?.basketUser.priceSale.split(" ").join("") -
+          +item?.basketUser.price.split(" ").join("") <
         0
           ? 0
-          : +item.basketUser.priceSale.split(" ").join("") -
-            +item.basketUser.price.split(" ").join("");
+          : +item?.basketUser.priceSale.split(" ").join("") -
+            +item?.basketUser.price.split(" ").join("");
 
       return acc;
     },
@@ -45,7 +45,7 @@ const PaymentProduct = () => {
                 <Text body5> Всего программ</Text>
               </div>
               <div className="item-count">
-                <Text body5>{totals.allProgramms} шт</Text>
+                <Text body5>{totals?.allProgramms} шт</Text>
               </div>
             </div>
             <div className="item-payment">
@@ -53,7 +53,7 @@ const PaymentProduct = () => {
                 <Text body5>Стоимость</Text>
               </div>
               <div className="item-count">
-                <Text body5>{totals.allCostNoSale}₽ </Text>
+                <Text body5>{totals?.allCostNoSale}₽ </Text>
               </div>
             </div>
             <div className="item-payment">
@@ -61,7 +61,7 @@ const PaymentProduct = () => {
                 <Text body5> Скидка</Text>
               </div>
               <div className="item-count">
-                <Text body5>{totals.allSale} ₽</Text>
+                <Text body5>{totals?.allSale} ₽</Text>
               </div>
             </div>
             <div className="item-payment">
@@ -70,7 +70,7 @@ const PaymentProduct = () => {
               </div>
               <div className="item-count">
                 <Text body3_bold>
-                  {Math.abs(totals.allCostNoSale - totals.allSale)} ₽
+                  {Math.abs(totals?.allCostNoSale - totals.allSale)} ₽
                 </Text>
               </div>
             </div>

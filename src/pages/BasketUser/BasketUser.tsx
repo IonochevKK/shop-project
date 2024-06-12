@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import Layout from "../../components/Layout/Layout";
 import Title from "../../components/UI Kit/Titles/TItle";
 import Text from "../../components/UI Kit/Text/Text";
@@ -13,19 +12,23 @@ import {
   deleteItemBasket,
   deleteItemsInBasket,
 } from "../../store/basketUser-slise";
-import { Card } from "../../libs/fetchAllProductsUserBasket";
+import { userBasket } from "../../libs/fetchAllProductsUserBasket";
+import deleteProductInBasket from "../../libs/deleteProductInBasket";
+import deleteProductsSelectedWithBasket from "../../libs/deleteProductsSelectedWithBasket";
 const BasketUser = () => {
   const dispatch = useDispatch();
   const basketUserListProduct = useSelector(
     (state: RootState) => state.BasketUser
   );
-  const handleClickDeleteProductInBatcher = (card: Card) => {
+  const userSession = useSelector((state: RootState) => state.UserSession.id);
+  const handleClickDeleteProductInBatcher = (card: userBasket) => {
     dispatch(deleteItemBasket(card));
+    deleteProductInBasket(card, userSession);
   };
 
-  const handleDeleteItemsBasket = (id: string[]) => {
-    console.log(id)
-    dispatch(deleteItemsInBasket(id));
+  const handleDeleteItemsBasket = (card: userBasket[]) => {
+    dispatch(deleteItemsInBasket(card));
+    deleteProductsSelectedWithBasket(card, userSession);
   };
 
   return (

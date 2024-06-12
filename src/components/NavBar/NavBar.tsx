@@ -44,6 +44,9 @@ const NavBar: React.FC = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
 
+  const basketUserListProduct = useSelector(
+    (state: RootState) => state.BasketUser
+  );
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -97,7 +100,6 @@ const NavBar: React.FC = () => {
     setIsOpenMenu(!isOpenMenu);
   };
   const onHandleClickLogout = () => {
-    console.log(1);
     localStorage.removeItem("userSession");
     dispatch(updateUserSession({ id: null, email: null, name: null }));
   };
@@ -163,8 +165,8 @@ const NavBar: React.FC = () => {
                     <Link to="/personal-account/personal-data">
                       <SvgIcon type="user" />
                     </Link>
-                    <Link to='/basket-user'>
-                      <SvgIcon type="basket" countGoods={99} />
+                    <Link to="/basket-user">
+                      <SvgIcon type="basket" countGoods={basketUserListProduct.length === 0 ? 0 : basketUserListProduct.length } />
                     </Link>
                     {!sizeScreenTablet && (
                       <Button type="secondary_2" onClick={onHandleClickLogout}>

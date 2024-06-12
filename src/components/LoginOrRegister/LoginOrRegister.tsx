@@ -26,7 +26,7 @@ interface LoginOrRegisterProps {
 interface PhoneNumber {
   formatedNumber: string;
 }
-
+89896120182
 const LoginOrRegister: React.FC<LoginOrRegisterProps> = ({ closeLogin }) => {
   const dispatch = useDispatch();
   const [phoneUser, setPhoneUser] = useState<PhoneNumber>({
@@ -38,7 +38,6 @@ const LoginOrRegister: React.FC<LoginOrRegisterProps> = ({ closeLogin }) => {
   const [otp, setOTP] = useState("");
 
   const root = document.getElementById("root") as Element;
-  console.log(loading);
   const handleSumbmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const phone = await getPhoneNumber(e);

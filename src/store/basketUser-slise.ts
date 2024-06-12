@@ -1,11 +1,14 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { userBasket, fetchAllProductsUserBasket, Card } from "../libs/fetchAllProductsUserBasket";
+import {
+  userBasket,
+  fetchAllProductsUserBasket,
+} from "../libs/fetchAllProductsUserBasket";
 
 export const fetchBasketItems = createAsyncThunk(
   "basket/fetchBasketItems",
-  async () => {
+  async (userId: string) => {
     try {
-      const userBasketData = await fetchAllProductsUserBasket();
+      const userBasketData = await fetchAllProductsUserBasket(userId);
       return userBasketData;
     } catch (error) {
       throw Error("Failed to fetch basket items");
@@ -22,12 +25,18 @@ export const basketUser = createSlice({
     addItemBasket(state, action: PayloadAction<userBasket>) {
       state.push(action.payload);
     },
-    deleteItemBasket(state, action: PayloadAction<Card>) {
-      return state.filter((item) => item.basketUser.id !== action.payload.id);
-      
+    deleteItemBasket(state, action: PayloadAction<userBasket>) {
+      return state.filter(
+        (item) => item.basketUser.id !== action.payload.basketUser.id
+      );
     },
-    deleteItemsInBasket(state, action: PayloadAction<string[]>) {
-      return state.filter((item,index) => item.basketUser.id !== action.payload[index])
+    deleteItemsInBasket(state, action: PayloadAction<userBasket[]>) {
+      return state.filter(
+        (item) =>
+          !action.payload.some(
+            (payloadItem) => payloadItem.basketUser.id === item.basketUser.id
+          )
+      );
     },
     setBasketItems(state, action: PayloadAction<userBasket[]>) {
       return action.payload;

@@ -26,7 +26,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   useEffect(() => {
     dispatch(ChangeCookies(true));
-    dispatch(fetchBasketItems());
+    if (userSession.id) {
+      dispatch(fetchBasketItems(userSession.id));
+    }
     if (userSession.id) {
       saveSessionToLocalStorage(userSession.id);
     }
